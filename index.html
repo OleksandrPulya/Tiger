@@ -70,6 +70,7 @@
       text-transform: uppercase;
       clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
       transition: background 0.3s;
+      cursor: pointer;
     }
 
     .hex-btn:hover {
@@ -80,31 +81,15 @@
       margin-top: 10px;
       text-transform: none;
       cursor: pointer;
-      user-select: none;
-      position: relative;
     }
 
     .hero-content p strong {
       font-weight: bold;
     }
 
-    .copy-message {
-      position: absolute;
-      top: -25px;
-      right: 0;
-      background: #ff1e1e;
-      color: white;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-
-    .copy-message.show {
-      opacity: 1;
-      pointer-events: auto;
+    .hero-image {
+      position: relative;
+      display: inline-block;
     }
 
     .hero-image img {
@@ -113,6 +98,7 @@
       height: auto;
       border-radius: 10px;
       object-fit: contain;
+      box-shadow: 0 0 20px 8px rgba(255, 0, 0, 0.7);
     }
 
     .stats {
@@ -207,10 +193,7 @@
         <p>РЕАГУВАННЯ</p>
       </div>
       <a class="hex-btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
-      <p id="phone-text" title="Натисніть, щоб скопіювати номер">
-        Або зателефонуйте <strong id="phone">0800-30-47-74</strong>
-        <span class="copy-message" id="copy-message">Скопійовано!</span>
-      </p>
+      <p id="phone-number">Або зателефонуйте <strong>0800-30-47-74</strong></p>
     </div>
     <div class="hero-image">
       <img src="Copilot_20250803_164540.png" alt="Охоронна компанія ТИГР">
@@ -253,16 +236,13 @@
   </section>
 
   <script>
-    const phone = document.getElementById('phone');
-    const copyMessage = document.getElementById('copy-message');
-
-    phone.addEventListener('click', () => {
-      const textToCopy = phone.textContent.trim();
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        copyMessage.classList.add('show');
-        setTimeout(() => {
-          copyMessage.classList.remove('show');
-        }, 1500);
+    // Копіювання номера телефону при кліку
+    document.getElementById('phone-number').addEventListener('click', function() {
+      const phone = this.querySelector('strong').textContent.trim();
+      navigator.clipboard.writeText(phone).then(() => {
+        alert('Номер телефону скопійовано: ' + phone);
+      }).catch(() => {
+        alert('Не вдалося скопіювати номер телефону.');
       });
     });
   </script>
