@@ -86,11 +86,30 @@
       clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
       margin-left: 20px;
       white-space: nowrap;
+      cursor: pointer;
     }
 
     .phone-diamond:hover {
       background: #ff1e1e;
-      color: white;
+    }
+
+    .copied-tooltip {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 5px 10px;
+      border: 2px solid #000;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    .show-tooltip {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero {
@@ -223,26 +242,6 @@
       margin: 10px;
     }
 
-    .copied-tooltip {
-      position: absolute;
-      top: 100%;
-      margin-top: 8px;
-      background-color: rgba(0, 0, 0, 0.85);
-      padding: 5px 10px;
-      border: 2px solid #000;
-      border-radius: 5px;
-      font-size: 0.85rem;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      pointer-events: none;
-    }
-
-    .show-tooltip {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     @media (max-width: 768px) {
       nav {
         flex-wrap: wrap;
@@ -281,7 +280,8 @@
         <a href="#contact" class="btn">Контакти</a>
         <a href="#sales" class="btn">Акції</a>
       </nav>
-      <a class="phone-diamond btn" href="tel:0800304774">0800-30-47-74</a>
+      <a class="phone-diamond btn" id="header-phone">0800-30-47-74</a>
+      <div id="header-tooltip" class="copied-tooltip">Скопійовано!</div>
     </div>
   </header>
 
@@ -337,7 +337,7 @@
   </section>
 
   <script>
-    // Копіювання номера телефону
+    // Копіювання номера телефону в hero
     const phone = document.getElementById('phone');
     const tooltip = document.getElementById('tooltip');
 
@@ -351,7 +351,24 @@
       });
     });
 
-    // Сильніше нахил картинки
+    // Копіювання номера з шапки
+    const headerPhone = document.getElementById('header-phone');
+    const headerTooltip = document.getElementById('header-tooltip');
+
+    headerPhone.addEventListener('click', () => {
+      const number = headerPhone.innerText;
+      navigator.clipboard.writeText(number).then(() => {
+        const rect = headerPhone.getBoundingClientRect();
+        headerTooltip.style.left = rect.left + rect.width / 2 + 'px';
+        headerTooltip.style.top = rect.bottom + 5 + window.scrollY + 'px';
+        headerTooltip.classList.add('show-tooltip');
+        setTimeout(() => {
+          headerTooltip.classList.remove('show-tooltip');
+        }, 1500);
+      });
+    });
+
+    // Анімація картинки
     const heroImage = document.querySelector(".hero-image img");
 
     document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
