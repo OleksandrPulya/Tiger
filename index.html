@@ -1,77 +1,140 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Охоронна компанія TIGR</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Охоронна компанія ТИГР</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0b0b0b;
+      color: white;
+    }
+    header {
+      background-color: #000;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+      background: #111;
+    }
+    .hero img {
+      max-width: 300px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .btn {
+      background: red;
+      color: white;
+      padding: 15px 30px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+    }
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 40px 20px;
+      background: #141414;
+      text-align: center;
+    }
+    .services, .gallery {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .card {
+      background: #1c1c1c;
+      padding: 20px;
+      width: 300px;
+      border-radius: 10px;
+      color: white;
+    }
+    .card h3 {
+      color: red;
+    }
+    .gallery img {
+      width: 200px;
+      border-radius: 10px;
+      margin: 10px;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans">
-  <!-- Header -->
-  <header class="bg-black text-white">
-    <div class="container mx-auto flex items-center justify-between py-4 px-6">
-      <div class="text-2xl font-bold">TIGR</div>
-      <nav class="space-x-4 hidden md:block">
-        <a href="#about" class="hover:text-yellow-400">Про нас</a>
-        <a href="#services" class="hover:text-yellow-400">Послуги</a>
-        <a href="#contact" class="hover:text-yellow-400">Контакти</a>
-      </nav>
-    </div>
+<body>
+  <header>
+    <div><img src="logo.png" alt="ТИГР логотип" height="40"></div>
+    <nav>
+      <a href="#about">Про нас</a>
+      <a href="#services">Послуги</a>
+      <a href="#news">Новини</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#contact">Контакти</a>
+      <a href="#sales">Акції</a>
+    </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section class="bg-yellow-400 text-black py-20 text-center">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">Охоронна компанія TIGR</h1>
-    <p class="text-lg md:text-xl mb-6">Надійна охорона бізнесу та дому</p>
-    <a href="#contact" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800">Замовити консультацію</a>
+  <section class="hero">
+    <h1>ПІДРОЗДІЛ ШВИДКОГО РЕАГУВАННЯ</h1>
+    <a class="btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
+    <p>Або зателефонуйте <strong>0800-30-47-74</strong></p>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="py-16 bg-gray-800">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-12 text-yellow-400">Наші послуги</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-gray-700 p-6 rounded shadow">
-          <h3 class="text-xl font-semibold mb-2 text-yellow-300">Фізична охорона</h3>
-          <p>Професійна охорона об’єктів, подій, персоналу.</p>
-        </div>
-        <div class="bg-gray-700 p-6 rounded shadow">
-          <h3 class="text-xl font-semibold mb-2 text-yellow-300">Пультова охорона</h3>
-          <p>Цілодобовий моніторинг із швидким реагуванням груп.</p>
-        </div>
-        <div class="bg-gray-700 p-6 rounded shadow">
-          <h3 class="text-xl font-semibold mb-2 text-yellow-300">Відеоспостереження</h3>
-          <p>Монтаж та обслуговування систем безпеки.</p>
-        </div>
+  <section class="stats">
+    <div><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
+    <div><h2>15000+</h2><p>Клієнтів</p></div>
+    <div><h2>5000+</h2><p>Об'єктів під охороною</p></div>
+    <div><h2>24/7</h2><p>Моніторинг та реагування</p></div>
+  </section>
+
+  <section class="services" id="services">
+    <h2>МИ НАДАЄМО ШИРОКИЙ ВИБІР ПОСЛУГ</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>ПУЛЬТОВА ОХОРОНА КВАРТИР</h3>
+        <p>Гарантія своєчасного виявлення і нейтралізації загроз</p>
+      </div>
+      <div class="card">
+        <h3>ОСОБИСТА ОХОРОНА (VIP)</h3>
+        <p>Ми впораємось з будь-якою ситуацією</p>
+      </div>
+      <div class="card">
+        <h3>ПРОТИПОЖЕЖНА ОХОРОНА</h3>
+        <p>Комплекс послуг з впровадження систем протипожежного захисту</p>
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="py-16 bg-gray-900">
-    <div class="container mx-auto px-6 text-center max-w-3xl">
-      <h2 class="text-3xl font-bold mb-6 text-yellow-400">Про компанію</h2>
-      <p class="text-lg text-gray-300">Компанія TIGR понад 10 років забезпечує охоронні послуги по всій Україні. Ми маємо досвідчену команду та новітнє обладнання для гарантії вашої безпеки.</p>
+  <section class="gallery" id="gallery">
+    <h2>ГАЛЕРЕЯ</h2>
+    <div>
+      <img src="guard1.jpg" alt="Охоронець">
+      <img src="guard2.jpg" alt="ТИГР екіпірування">
+      <img src="car1.jpg" alt="Машина TIGR">
+      <img src="badge.jpg" alt="Логотип TIGR">
     </div>
   </section>
-
-  <!-- Contact Form -->
-  <section id="contact" class="bg-gray-800 text-white py-16">
-    <div class="container mx-auto px-6 max-w-2xl">
-      <h2 class="text-3xl font-bold text-center mb-8 text-yellow-400">Зв’яжіться з нами</h2>
-      <form class="space-y-6">
-        <input type="text" placeholder="Ваше ім’я" class="w-full px-4 py-2 rounded bg-gray-900 text-white placeholder-gray-400" required />
-        <input type="email" placeholder="Ваш email" class="w-full px-4 py-2 rounded bg-gray-900 text-white placeholder-gray-400" required />
-        <textarea placeholder="Повідомлення" rows="4" class="w-full px-4 py-2 rounded bg-gray-900 text-white placeholder-gray-400"></textarea>
-        <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300">Надіслати</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-black text-gray-500 text-center py-6">
-    <p>&copy; 2025 TIGR. Усі права захищено.</p>
-  </footer>
 </body>
 </html>
-
