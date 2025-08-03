@@ -41,7 +41,7 @@
 
     .logo {
       height: 40px;
-      margin-right: 20px; /* ← Зменшено відстань до тексту */
+      margin-right: 20px;
       flex-shrink: 0;
       user-select: none;
     }
@@ -113,9 +113,15 @@
 
     .hero-content p strong {
       font-weight: bold;
+      transition: color 0.3s ease;
     }
 
-   .hero-image {
+    /* Зміна кольору номера при наведенні */
+    #phone:hover strong {
+      color: #ff1e1e;
+    }
+
+    .hero-image {
       position: relative;
       display: inline-block;
     }
@@ -142,6 +148,7 @@
       border-radius: 10px;
       object-fit: contain;
     }
+
     .stats {
       display: flex;
       flex-wrap: wrap;
