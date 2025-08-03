@@ -151,6 +151,7 @@
     .hero-image {
       position: relative;
       display: inline-block;
+      perspective: 1000px;
     }
 
     .hero-image::before {
@@ -159,8 +160,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 120%;
-      height: 100%;
+      width: 110%;
+      height: 90%;
       background: radial-gradient(circle, rgba(255, 0, 0, 0.3) 0%, transparent 70%);
       z-index: 0;
       pointer-events: none;
@@ -174,6 +175,8 @@
       height: auto;
       border-radius: 10px;
       object-fit: contain;
+      transition: transform 0.3s ease;
+      will-change: transform;
     }
 
     .stats {
@@ -334,6 +337,7 @@
   </section>
 
   <script>
+    // Копіювання номера телефону
     const phone = document.getElementById('phone');
     const tooltip = document.getElementById('tooltip');
 
@@ -345,6 +349,25 @@
           tooltip.classList.remove('show-tooltip');
         }, 1500);
       });
+    });
+
+    // 3D ефект зображення
+    const heroImage = document.querySelector(".hero-image img");
+
+    document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+
+      heroImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+
+    document.querySelector(".hero-image").addEventListener("mouseleave", () => {
+      heroImage.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
     });
   </script>
 </body>
