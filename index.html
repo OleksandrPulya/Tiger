@@ -79,10 +79,32 @@
     .hero-content p:last-child {
       margin-top: 10px;
       text-transform: none;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
     }
 
     .hero-content p strong {
       font-weight: bold;
+    }
+
+    .copy-message {
+      position: absolute;
+      top: -25px;
+      right: 0;
+      background: #ff1e1e;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .copy-message.show {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .hero-image img {
@@ -185,7 +207,10 @@
         <p>РЕАГУВАННЯ</p>
       </div>
       <a class="hex-btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
-      <p>Або зателефонуйте <strong>0800-30-47-74</strong></p>
+      <p id="phone-text" title="Натисніть, щоб скопіювати номер">
+        Або зателефонуйте <strong id="phone">0800-30-47-74</strong>
+        <span class="copy-message" id="copy-message">Скопійовано!</span>
+      </p>
     </div>
     <div class="hero-image">
       <img src="Copilot_20250803_164540.png" alt="Охоронна компанія ТИГР">
@@ -226,5 +251,20 @@
       <img src="badge.jpg" alt="Логотип TIGR">
     </div>
   </section>
+
+  <script>
+    const phone = document.getElementById('phone');
+    const copyMessage = document.getElementById('copy-message');
+
+    phone.addEventListener('click', () => {
+      const textToCopy = phone.textContent.trim();
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        copyMessage.classList.add('show');
+        setTimeout(() => {
+          copyMessage.classList.remove('show');
+        }, 1500);
+      });
+    });
+  </script>
 </body>
 </html>
