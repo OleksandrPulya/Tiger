@@ -125,35 +125,30 @@
       z-index: 0;
     }
 
-    /* Оновлений стиль для прокрутки */
+    /* Стиль для секції stats */
     .stats {
       padding: 40px 20px;
       background: #141414;
       text-align: center;
 
-      overflow-x: hidden; /* спочатку приховуємо прокрутку */
-      white-space: nowrap;
-      cursor: pointer;
-      transition: overflow-x 0.3s ease;
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
+      align-items: center;
       gap: 50px;
+      perspective: 1000px; /* для 3D ефекту */
+      transition: transform 0.3s ease;
+      will-change: transform;
     }
 
-    /* Кожен блок в один рядок */
     .stats div {
-      display: inline-block;
-      margin: 0; /* прибираємо вертикальні відступи, бо flex-розкладка */
-      flex: 0 0 auto;
-      text-align: center;
       min-width: 150px;
+      text-align: center;
+      user-select: none;
+      transition: transform 0.3s ease;
+      will-change: transform;
     }
 
-    /* При наведенні - показуємо прокрутку */
-    .stats:hover {
-      overflow-x: auto;
-      scroll-behavior: smooth;
-    }
+    /* Інші стилі без змін */
 
     .services, .gallery {
       padding: 60px 20px;
@@ -241,7 +236,7 @@
     </div>
   </section>
 
-  <section class="stats">
+  <section class="stats" id="stats">
     <div><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
     <div><h2>15000+</h2><p>Клієнтів</p></div>
     <div><h2>5000+</h2><p>Об'єктів під охороною</p></div>
@@ -277,6 +272,7 @@
   </section>
 
   <script>
+    // Копіювання номера телефону
     const phoneParagraph = document.getElementById('phone');
     phoneParagraph.addEventListener('click', () => {
       const phoneNumber = phoneParagraph.querySelector('strong').innerText;
@@ -288,6 +284,31 @@
       }).catch(() => {
         alert('Не вдалося скопіювати номер телефону.');
       });
+    });
+
+    // Нахил при наведенні миші на .stats
+    const stats = document.getElementById('stats');
+
+    stats.addEventListener('mousemove', (e) => {
+      const rect = stats.getBoundingClientRect();
+      const x = e.clientX - rect.left; // X позиція відносно блока
+      const y = e.clientY - rect.top;  // Y позиція
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Відстань від центру - в межах -1 до 1
+      const deltaX = (x - centerX) / centerX;
+      const deltaY = (y - centerY) / centerY;
+
+      const maxRotate = 10; // максимально кут нахилу в градусах
+
+      // Поворот навколо Y по X, і навколо X по Y (3D нахил)
+      stats.style.transform = `rotateX(${ -deltaY * maxRotate }deg) rotateY(${ deltaX * maxRotate }deg)`;
+    });
+
+    stats.addEventListener('mouseleave', () => {
+      stats.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
   </script>
 </body>
