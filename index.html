@@ -156,16 +156,16 @@
 
     .hero-content p:last-child {
       margin-top: 10px;
-      cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .hero-content p strong {
       font-weight: bold;
       transition: color 0.3s ease;
+      cursor: pointer;
     }
 
-    #phone:hover strong {
+    .hero-content p strong:hover {
       color: #ff1e1e;
     }
 
@@ -211,37 +211,6 @@
 
     .stats div {
       margin: 10px 0;
-    }
-
-    .services, .gallery {
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .cards {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .card {
-      background: #1c1c1c;
-      padding: 20px;
-      width: 300px;
-      border-radius: 10px;
-      color: white;
-    }
-
-    .card h3 {
-      color: red;
-    }
-
-    .gallery img {
-      width: 200px;
-      border-radius: 10px;
-      margin: 10px;
     }
 
     @media (max-width: 768px) {
@@ -305,54 +274,21 @@
     </div>
   </section>
 
-  <section class="stats">
-    <div><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
-    <div><h2>15000+</h2><p>Клієнтів</p></div>
-    <div><h2>5000+</h2><p>Об'єктів під охороною</p></div>
-    <div><h2>24/7</h2><p>Моніторинг та реагування</p></div>
-  </section>
-
-  <section class="services" id="services">
-    <h2>МИ НАДАЄМО ШИРОКИЙ ВИБІР ПОСЛУГ</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>ПУЛЬТОВА ОХОРОНА КВАРТИР</h3>
-        <p>Гарантія своєчасного виявлення і нейтралізації загроз</p>
-      </div>
-      <div class="card">
-        <h3>ОСОБИСТА ОХОРОНА (VIP)</h3>
-        <p>Ми впораємось з будь-якою ситуацією</p>
-      </div>
-      <div class="card">
-        <h3>ПРОТИПОЖЕЖНА ОХОРОНА</h3>
-        <p>Комплекс послуг з впровадження систем протипожежного захисту</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="gallery" id="gallery">
-    <h2>ГАЛЕРЕЯ</h2>
-    <div>
-      <img src="guard1.jpg" alt="Охоронець">
-      <img src="guard2.jpg" alt="ТИГР екіпірування">
-      <img src="car1.jpg" alt="Машина TIGR">
-      <img src="badge.jpg" alt="Логотип TIGR">
-    </div>
-  </section>
-
   <script>
-    // Копіювання номера телефону в hero
+    // Копіювання номера телефону тільки при натисканні на <strong>
     const phone = document.getElementById('phone');
     const tooltip = document.getElementById('tooltip');
 
-    phone.addEventListener('click', () => {
-      const number = phone.querySelector('strong').innerText;
-      navigator.clipboard.writeText(number).then(() => {
-        tooltip.classList.add('show-tooltip');
-        setTimeout(() => {
-          tooltip.classList.remove('show-tooltip');
-        }, 1500);
-      });
+    phone.addEventListener('click', (e) => {
+      if (e.target.tagName === 'STRONG') {
+        const number = e.target.innerText;
+        navigator.clipboard.writeText(number).then(() => {
+          tooltip.classList.add('show-tooltip');
+          setTimeout(() => {
+            tooltip.classList.remove('show-tooltip');
+          }, 1500);
+        });
+      }
     });
 
     // Копіювання номера з шапки
@@ -369,7 +305,7 @@
       });
     });
 
-    // Анімація картинки
+    // Анімація картинки при наведенні
     const heroImage = document.querySelector(".hero-image img");
 
     document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
