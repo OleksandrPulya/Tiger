@@ -14,27 +14,47 @@
       background-color: #0b0b0b;
       color: white;
       letter-spacing: 3px;
+      padding-top: 70px; /* Відступ зверху, щоб контент не ховався під фіксованою шапкою */
     }
 
     header {
-      background-color: #000;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Чорний фон 50% прозорий */
       padding: 15px 20px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between; /* Контент розташований зліва і справа */
       align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(8px); /* Легке розмиття фону для кращого вигляду */
+      box-sizing: border-box;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
     }
 
     nav a {
       color: white;
-      margin: 0 15px;
       text-decoration: none;
       font-weight: normal;
       font-size: 1rem;
+      white-space: nowrap;
     }
 
     nav a:hover {
       text-decoration: underline;
     }
+
+    .logo {
+      height: 40px; /* Висота логотипу */
+      user-select: none;
+    }
+
+    /* Інші стилі без змін */
 
     .hero {
       background: #111;
@@ -110,7 +130,6 @@
       z-index: 1;
     }
 
-    /* Підсвічування від центру */
     .hero-image::before {
       content: "";
       position: absolute;
@@ -125,12 +144,10 @@
       z-index: 0;
     }
 
-    /* Стиль для секції stats */
     .stats {
       padding: 40px 20px;
       background: #141414;
       text-align: center;
-
       display: flex;
       justify-content: center;
       align-items: center;
@@ -149,7 +166,6 @@
       will-change: transform;
     }
 
-    /* Додаємо ефект збільшення і легкого нахилу при hover, але JS зробить точний нахил */
     .stats div:hover {
       box-shadow: 0 10px 20px rgba(255, 0, 0, 0.5);
       z-index: 10;
@@ -158,8 +174,6 @@
     .stats div h2 {
       margin: 0 0 10px 0;
     }
-
-    /* Інші стилі без змін */
 
     .services, .gallery {
       padding: 60px 20px;
@@ -217,6 +231,14 @@
       nav a {
         margin: 5px 10px;
       }
+
+      header {
+        padding: 10px 15px;
+      }
+
+      .logo {
+        height: 30px;
+      }
     }
   </style>
 </head>
@@ -230,6 +252,7 @@
       <a href="#contact">Контакти</a>
       <a href="#sales">Акції</a>
     </nav>
+    <img src="Tiger logo.png" alt="Логотип ТИГР" class="logo" />
   </header>
 
   <section class="hero">
@@ -283,41 +306,27 @@
   </section>
 
   <script>
-    // Копіювання номера телефону
-    const phoneParagraph = document.getElementById('phone');
-    phoneParagraph.addEventListener('click', () => {
-      const phoneNumber = phoneParagraph.querySelector('strong').innerText;
-      navigator.clipboard.writeText(phoneNumber).then(() => {
-        phoneParagraph.classList.add('copied');
-        setTimeout(() => {
-          phoneParagraph.classList.remove('copied');
-        }, 2000);
-      }).catch(() => {
-        alert('Не вдалося скопіювати номер телефону.');
+    // Копіювання номера телефону по кліку
+    const phone = document.getElementById('phone');
+    phone.addEventListener('click', () => {
+      const text = phone.querySelector('strong').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        phone.classList.add('copied');
+        setTimeout(() => phone.classList.remove('copied'), 1500);
       });
     });
 
-    // Для кожного блока stats додаємо нахил при русі миші
-    const statBlocks = document.querySelectorAll('.stats div');
+    // Нахил для блоків з .stats
+    const statsBlocks = document.querySelectorAll('.stats div');
 
-    statBlocks.forEach(block => {
-      block.addEventListener('mousemove', (e) => {
+    statsBlocks.forEach(block => {
+      block.addEventListener('mousemove', e => {
         const rect = block.getBoundingClientRect();
-        const x = e.clientX - rect.left; // X позиція всередині блока
-        const y = e.clientY - rect.top;  // Y позиція
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const deltaX = (x - centerX) / centerX; // -1 до 1
-        const deltaY = (y - centerY) / centerY; // -1 до 1
-
-        const maxRotate = 15; // макс кут нахилу
-
-        const rotateX = -deltaY * maxRotate;
-        const rotateY = deltaX * maxRotate;
-
-        block.style.transform = `perspective(400px) scale(1.1) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const rotateX = ((y / rect.height) - 0.5) * 15; // нахил по X
+        const rotateY = ((x / rect.width) - 0.5) * 15;  // нахил по Y
+        block.style.transform = `perspective(400px) scale(1.1) rotateX(${ -rotateX }deg) rotateY(${ rotateY }deg)`;
         block.style.transition = 'transform 0.1s ease-out';
         block.style.zIndex = '10';
         block.style.boxShadow = '0 10px 20px rgba(255, 0, 0, 0.6)';
