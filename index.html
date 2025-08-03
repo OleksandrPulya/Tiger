@@ -34,9 +34,8 @@
     }
 
     .hero-content {
-      position: relative;
-      left: 25%;
-      transform: translateX(-50%);
+      max-width: 450px;
+      margin-left: 15%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -67,7 +66,7 @@
       background: #cc0000;
     }
 
-    .hero-content p {
+    .hero-content p:last-child {
       margin-top: 10px;
       font-weight: normal;
       text-transform: none;
@@ -124,8 +123,9 @@
 
     @media (max-width: 768px) {
       .hero-content {
-        position: static;
-        transform: none;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
         align-items: center;
         text-align: center;
       }
