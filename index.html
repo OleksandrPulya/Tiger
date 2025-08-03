@@ -6,7 +6,6 @@
   <title>Охоронна компанія ТИГР</title>
   <link rel="icon" href="Tiger logo.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-  
   <style>
     body {
       margin: 0;
@@ -74,6 +73,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      position: relative;
     }
 
     .hero-title p {
@@ -102,6 +102,7 @@
       margin-top: 10px;
       text-transform: none;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
 
     .hero-content p strong {
@@ -128,9 +129,6 @@
 
     .stats div {
       margin: 10px 0;
-      transition: transform 0.3s ease;
-      perspective: 500px;
-      cursor: pointer;
     }
 
     .services, .gallery {
@@ -164,6 +162,27 @@
       margin: 10px;
     }
 
+    /* Підказка при копіюванні */
+    .copied-tooltip {
+      position: absolute;
+      top: 100%;
+      margin-top: 8px;
+      background-color: rgba(0, 0, 0, 0.85);
+      padding: 5px 10px;
+      border: 2px solid #000;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .show-tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 768px) {
       .hero {
         flex-direction: column;
@@ -190,15 +209,6 @@
         margin: 5px 10px;
       }
     }
-
-    /* Для копіювання */
-    .copied {
-      border: 2px solid black;
-      padding: 5px 10px;
-      display: inline-block;
-      border-radius: 5px;
-      background-color: rgba(255, 255, 255, 0.1);
-    }
   </style>
 </head>
 <body>
@@ -223,6 +233,7 @@
       </div>
       <a class="hex-btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
       <p id="phone">Або зателефонуйте <strong>0800-30-47-74</strong></p>
+      <div id="tooltip" class="copied-tooltip">Скопійовано!</div>
     </div>
     <div class="hero-image">
       <img src="Copilot_20250803_164540.png" alt="Охоронна компанія ТИГР">
@@ -265,13 +276,17 @@
   </section>
 
   <script>
-    // Копіювання номера телефону
+    // Копіювання телефону
     const phone = document.getElementById('phone');
+    const tooltip = document.getElementById('tooltip');
+
     phone.addEventListener('click', () => {
-      const text = phone.querySelector('strong').innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        phone.classList.add('copied');
-        setTimeout(() => phone.classList.remove('copied'), 1500);
+      const number = phone.querySelector('strong').innerText;
+      navigator.clipboard.writeText(number).then(() => {
+        tooltip.classList.add('show-tooltip');
+        setTimeout(() => {
+          tooltip.classList.remove('show-tooltip');
+        }, 1500);
       });
     });
   </script>
