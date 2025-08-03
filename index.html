@@ -32,29 +32,43 @@
       text-align: center;
       padding: 60px 20px;
       background: #111;
-    }
-    .hero img {
-      max-width: 300px;
+      position: relative;
     }
     .hero-title {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       text-transform: uppercase;
       letter-spacing: 5px;
-      margin-bottom: 20px;
+      margin-bottom: 40px;
+      width: 100%;
+      max-width: 600px;
     }
     .hero-title p {
       font-size: 2.5rem;
       margin: 5px 0;
     }
-    .btn {
+    .diamond-btn {
+      position: relative;
+      width: 130px;
+      height: 130px;
       background: red;
+      transform: rotate(45deg);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -20px;
+      margin-bottom: 20px;
+    }
+    .diamond-btn span {
+      transform: rotate(-45deg);
       color: white;
-      padding: 15px 30px;
       font-weight: bold;
       text-decoration: none;
-      border-radius: 10px;
+      display: block;
+      width: 100%;
+      text-align: center;
     }
     .stats {
       display: flex;
@@ -98,6 +112,9 @@
       .hero-title p {
         font-size: 2rem;
       }
+      .hero-title {
+        align-items: center;
+      }
       .stats {
         flex-direction: column;
       }
@@ -123,7 +140,7 @@
       <p>ШВИДКОГО</p>
       <p>РЕАГУВАННЯ</p>
     </div>
-    <a class="btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
+    <a class="diamond-btn" href="#form"><span>ЗАЛИШИТИ<br>ЗАЯВКУ</span></a>
     <p>Або зателефонуйте <strong>0800-30-47-74</strong></p>
   </section>
 
