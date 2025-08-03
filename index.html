@@ -36,7 +36,6 @@
       align-items: center;
       max-width: 1200px;
       width: 100%;
-      position: relative; /* ключове для правильного tooltip */
     }
 
     .logo {
@@ -96,7 +95,7 @@
 
     .copied-tooltip {
       position: absolute;
-      top: calc(100% + 5px);
+      top: 100%;
       left: 50%;
       transform: translateX(-50%);
       background-color: rgba(0, 0, 0, 0.85);
@@ -108,6 +107,7 @@
       transition: all 0.3s ease;
       pointer-events: none;
       z-index: 9999;
+      margin-top: 6px;
     }
 
     .show-tooltip {
