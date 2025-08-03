@@ -36,9 +36,17 @@
     .hero img {
       max-width: 300px;
     }
-    .hero h1 {
-      font-size: 3rem;
+    .hero-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-transform: uppercase;
+      letter-spacing: 5px;
       margin-bottom: 20px;
+    }
+    .hero-title p {
+      font-size: 2.5rem;
+      margin: 5px 0;
     }
     .btn {
       background: red;
@@ -50,10 +58,14 @@
     }
     .stats {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-around;
       padding: 40px 20px;
       background: #141414;
       text-align: center;
+    }
+    .stats div {
+      margin: 10px 0;
     }
     .services, .gallery {
       padding: 60px 20px;
@@ -81,6 +93,15 @@
       border-radius: 10px;
       margin: 10px;
     }
+
+    @media (max-width: 768px) {
+      .hero-title p {
+        font-size: 2rem;
+      }
+      .stats {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
 <body>
@@ -97,7 +118,11 @@
   </header>
 
   <section class="hero">
-    <h1>ПІДРОЗДІЛ ШВИДКОГО РЕАГУВАННЯ</h1>
+    <div class="hero-title">
+      <p>ПІДРОЗДІЛ</p>
+      <p>ШВИДКОГО</p>
+      <p>РЕАГУВАННЯ</p>
+    </div>
     <a class="btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
     <p>Або зателефонуйте <strong>0800-30-47-74</strong></p>
   </section>
