@@ -67,6 +67,14 @@
       color: #ff1e1e;
     }
 
+    .btn {
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.07);
+    }
+
     .phone-diamond {
       display: inline-block;
       background: #555;
@@ -76,7 +84,6 @@
       text-decoration: none;
       text-transform: uppercase;
       clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
-      transition: background 0.3s ease;
       margin-left: 20px;
       white-space: nowrap;
     }
@@ -120,7 +127,6 @@
       text-decoration: none;
       text-transform: uppercase;
       clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
-      transition: background 0.3s;
     }
 
     .hex-btn:hover {
@@ -153,9 +159,9 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 130%;
-      height: 110%;
-      background: radial-gradient(circle, rgba(255, 0, 0, 0.4) 0%, transparent 60%);
+      width: 120%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 0, 0, 0.3) 0%, transparent 70%);
       z-index: 0;
       pointer-events: none;
     }
@@ -265,14 +271,14 @@
     <div class="header-content">
       <img src="Tiger logo.png" alt="Логотип ТИГР" class="logo" />
       <nav>
-        <a href="#about">Про нас</a>
-        <a href="#services">Послуги</a>
-        <a href="#news">Новини</a>
-        <a href="#gallery">Галерея</a>
-        <a href="#contact">Контакти</a>
-        <a href="#sales">Акції</a>
+        <a href="#about" class="btn">Про нас</a>
+        <a href="#services" class="btn">Послуги</a>
+        <a href="#news" class="btn">Новини</a>
+        <a href="#gallery" class="btn">Галерея</a>
+        <a href="#contact" class="btn">Контакти</a>
+        <a href="#sales" class="btn">Акції</a>
       </nav>
-      <a class="phone-diamond" href="tel:0800304774">0800-30-47-74</a>
+      <a class="phone-diamond btn" href="tel:0800304774">0800-30-47-74</a>
     </div>
   </header>
 
@@ -283,7 +289,7 @@
         <p>ШВИДКОГО</p>
         <p>РЕАГУВАННЯ</p>
       </div>
-      <a class="hex-btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
+      <a class="hex-btn btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
       <p id="phone">Або зателефонуйте <strong>0800-30-47-74</strong></p>
       <div id="tooltip" class="copied-tooltip">Скопійовано!</div>
     </div>
