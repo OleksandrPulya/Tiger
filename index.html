@@ -36,7 +36,7 @@
       align-items: center;
       max-width: 1200px;
       width: 100%;
-      position: relative;
+      position: relative; /* ключове для правильного tooltip */
     }
 
     .logo {
@@ -87,6 +87,7 @@
       margin-left: 20px;
       white-space: nowrap;
       cursor: pointer;
+      position: relative;
     }
 
     .phone-diamond:hover {
@@ -95,13 +96,15 @@
 
     .copied-tooltip {
       position: absolute;
+      top: calc(100% + 5px);
+      left: 50%;
+      transform: translateX(-50%);
       background-color: rgba(0, 0, 0, 0.85);
       padding: 5px 10px;
       border: 2px solid #000;
       border-radius: 5px;
       font-size: 0.85rem;
       opacity: 0;
-      transform: translateY(-10px);
       transition: all 0.3s ease;
       pointer-events: none;
       z-index: 9999;
@@ -109,7 +112,6 @@
 
     .show-tooltip {
       opacity: 1;
-      transform: translateY(0);
     }
 
     .hero {
@@ -280,8 +282,10 @@
         <a href="#contact" class="btn">Контакти</a>
         <a href="#sales" class="btn">Акції</a>
       </nav>
-      <a class="phone-diamond btn" id="header-phone">0800-30-47-74</a>
-      <div id="header-tooltip" class="copied-tooltip">Скопійовано!</div>
+      <div style="position: relative;">
+        <a class="phone-diamond btn" id="header-phone">0800-30-47-74</a>
+        <div id="header-tooltip" class="copied-tooltip">Скопійовано!</div>
+      </div>
     </div>
   </header>
 
@@ -358,9 +362,6 @@
     headerPhone.addEventListener('click', () => {
       const number = headerPhone.innerText;
       navigator.clipboard.writeText(number).then(() => {
-        const rect = headerPhone.getBoundingClientRect();
-        headerTooltip.style.left = rect.left + rect.width / 2 + 'px';
-        headerTooltip.style.top = rect.bottom + 5 + window.scrollY + 'px';
         headerTooltip.classList.add('show-tooltip');
         setTimeout(() => {
           headerTooltip.classList.remove('show-tooltip');
