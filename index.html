@@ -351,7 +351,7 @@
       });
     });
 
-    // 3D ефект зображення
+    // Сильніше нахил картинки
     const heroImage = document.querySelector(".hero-image img");
 
     document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
@@ -360,10 +360,10 @@
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -10;
-      const rotateY = ((x - centerX) / centerX) * 10;
+      const rotateX = ((y - centerY) / centerY) * -25;
+      const rotateY = ((x - centerX) / centerX) * 25;
 
-      heroImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+      heroImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
     });
 
     document.querySelector(".hero-image").addEventListener("mouseleave", () => {
