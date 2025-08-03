@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Охоронна компанія ТИГР</title>
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
   <style>
@@ -33,9 +33,12 @@
       flex-direction: column;
       align-items: flex-start;
       text-align: left;
-      padding: 60px 20px;
+      padding: 60px 40px;
       background: #111;
-      position: relative;
+    }
+
+    .hero img {
+      max-width: 300px;
     }
 
     .hero-title {
@@ -44,8 +47,7 @@
       align-items: flex-start;
       text-transform: uppercase;
       letter-spacing: 5px;
-      margin-left: 40px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .hero-title p {
@@ -53,34 +55,27 @@
       margin: 5px 0;
     }
 
-    .diamond-btn {
-      position: relative;
-      width: 200px;
-      height: 60px;
-      background: red;
-      transform: rotate(45deg);
-      border-radius: 10px;
-      margin-left: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .diamond-btn span {
-      transform: rotate(-45deg);
+    .hex-btn {
+      display: inline-block;
+      background: #ff1e1e;
       color: white;
       font-weight: bold;
+      font-size: 1rem;
+      padding: 12px 50px;
       text-decoration: none;
-      display: block;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      line-height: 1.2;
+      text-transform: uppercase;
+      clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+      transition: background 0.3s;
+      margin-bottom: 15px;
     }
 
-    .hero p:last-of-type {
-      margin-left: 40px;
+    .hex-btn:hover {
+      background: #cc0000;
+    }
+
+    .hero p strong {
+      margin-top: 10px;
+      display: inline-block;
     }
 
     .stats {
@@ -128,21 +123,21 @@
     }
 
     @media (max-width: 768px) {
+      .hero {
+        align-items: center;
+        text-align: center;
+      }
+
       .hero-title {
         align-items: center;
-        margin-left: 0;
       }
 
-      .diamond-btn {
-        margin-left: 0;
-        width: 140px;
-        height: 60px;
+      .hero-title p {
+        font-size: 2rem;
       }
 
-      .hero p:last-of-type {
-        margin-left: 0;
-        text-align: center;
-        width: 100%;
+      .stats {
+        flex-direction: column;
       }
     }
   </style>
@@ -166,7 +161,7 @@
       <p>ШВИДКОГО</p>
       <p>РЕАГУВАННЯ</p>
     </div>
-    <a class="diamond-btn" href="#form"><span>ЗАЛИШИТИ<br>ЗАЯВКУ</span></a>
+    <a class="hex-btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
     <p>Або зателефонуйте <strong>0800-30-47-74</strong></p>
   </section>
 
