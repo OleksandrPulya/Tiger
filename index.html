@@ -39,11 +39,14 @@
     .hero {
       background: #111;
       padding: 60px 40px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 40px; /* Відстань між текстом і зображенням */
     }
 
     .hero-content {
       max-width: 450px;
-      margin-left: 15%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -78,6 +81,13 @@
 
     .hero-content p strong {
       font-weight: bold;
+    }
+
+    /* Картинка праворуч */
+    .hero-image img {
+      max-width: 300px;
+      border-radius: 10px;
+      object-fit: contain;
     }
 
     .stats {
@@ -125,16 +135,26 @@
     }
 
     @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+        gap: 20px;
+      }
+
       .hero-content {
         max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
         align-items: center;
         text-align: center;
       }
 
       .hero-title p {
         font-size: 2rem;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
       }
 
       .stats {
@@ -173,6 +193,9 @@
       </div>
       <a class="hex-btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
       <p>Або зателефонуйте <strong>0800-30-47-74</strong></p>
+    </div>
+    <div class="hero-image">
+      <img src="your-image.jpg" alt="Охоронна компанія ТИГР">
     </div>
   </section>
 
