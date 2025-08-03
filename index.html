@@ -40,16 +40,18 @@
       background: #111;
       padding: 60px 40px;
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
-      gap: 40px; /* Відстань між текстом і зображенням */
+      gap: 60px;
+      flex-wrap: wrap;
     }
 
     .hero-content {
       max-width: 450px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      text-align: center;
     }
 
     .hero-title p {
@@ -83,9 +85,10 @@
       font-weight: bold;
     }
 
-    /* Картинка праворуч */
     .hero-image img {
-      max-width: 300px;
+      max-width: 450px;
+      width: 100%;
+      height: auto;
       border-radius: 10px;
       object-fit: contain;
     }
@@ -137,9 +140,8 @@
     @media (max-width: 768px) {
       .hero {
         flex-direction: column;
-        align-items: center;
         padding: 40px 20px;
-        gap: 20px;
+        gap: 30px;
       }
 
       .hero-content {
@@ -148,17 +150,8 @@
         text-align: center;
       }
 
-      .hero-title p {
-        font-size: 2rem;
-      }
-
       .hero-image img {
         max-width: 100%;
-        height: auto;
-      }
-
-      .stats {
-        flex-direction: column;
       }
 
       nav {
@@ -195,7 +188,7 @@
       <p>Або зателефонуйте <strong>0800-30-47-74</strong></p>
     </div>
     <div class="hero-image">
-      <img src="Copilot_20250803_164540.png" alt="Охоронна компанія ТИГР">
+      <img src="your-image.jpg" alt="Охоронна компанія ТИГР">
     </div>
   </section>
 
