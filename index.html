@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Охоронна компанія TIGR</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-800 font-sans">
+  <!-- Header -->
+  <header class="bg-black text-white">
+    <div class="container mx-auto flex items-center justify-between py-4 px-6">
+      <div class="text-2xl font-bold">TIGR</div>
+      <nav class="space-x-4 hidden md:block">
+        <a href="#about" class="hover:text-yellow-400">Про нас</a>
+        <a href="#services" class="hover:text-yellow-400">Послуги</a>
+        <a href="#contact" class="hover:text-yellow-400">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-yellow-400 text-black py-20 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Охоронна компанія TIGR</h1>
+    <p class="text-lg md:text-xl mb-6">Надійна охорона бізнесу та дому</p>
+    <a href="#contact" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800">Замовити консультацію</a>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">Наші послуги</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-semibold mb-2">Фізична охорона</h3>
+          <p>Професійна охорона об’єктів, подій, персоналу.</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-semibold mb-2">Пультова охорона</h3>
+          <p>Цілодобовий моніторинг із швидким реагуванням груп.</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+          <h3 class="text-xl font-semibold mb-2">Відеоспостереження</h3>
+          <p>Монтаж та обслуговування систем безпеки.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-16">
+    <div class="container mx-auto px-6 text-center max-w-3xl">
+      <h2 class="text-3xl font-bold mb-6">Про компанію</h2>
+      <p class="text-lg">Компанія TIGR понад 10 років забезпечує охоронні послуги по всій Україні. Ми маємо досвідчену команду та новітнє обладнання для гарантії вашої безпеки.</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact" class="bg-black text-white py-16">
+    <div class="container mx-auto px-6 max-w-2xl">
+      <h2 class="text-3xl font-bold text-center mb-8">Зв’яжіться з нами</h2>
+      <form class="space-y-6">
+        <input type="text" placeholder="Ваше ім’я" class="w-full px-4 py-2 rounded text-black" required />
+        <input type="email" placeholder="Ваш email" class="w-full px-4 py-2 rounded text-black" required />
+        <textarea placeholder="Повідомлення" rows="4" class="w-full px-4 py-2 rounded text-black"></textarea>
+        <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300">Надіслати</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 text-center py-6">
+    <p>&copy; 2025 TIGR. Усі права захищено.</p>
+  </footer>
+</body>
+</html>
