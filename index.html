@@ -135,17 +135,28 @@
       justify-content: center;
       align-items: center;
       gap: 50px;
-      perspective: 1000px; /* для 3D ефекту */
-      transition: transform 0.3s ease;
-      will-change: transform;
     }
 
     .stats div {
       min-width: 150px;
       text-align: center;
       user-select: none;
-      transition: transform 0.3s ease;
+      padding: 20px;
+      border-radius: 8px;
+      background: #1c1c1c;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
       will-change: transform;
+    }
+
+    /* Додаємо ефект збільшення і легкого нахилу при hover, але JS зробить точний нахил */
+    .stats div:hover {
+      box-shadow: 0 10px 20px rgba(255, 0, 0, 0.5);
+      z-index: 10;
+    }
+
+    .stats div h2 {
+      margin: 0 0 10px 0;
     }
 
     /* Інші стилі без змін */
@@ -286,29 +297,38 @@
       });
     });
 
-    // Нахил при наведенні миші на .stats
-    const stats = document.getElementById('stats');
+    // Для кожного блока stats додаємо нахил при русі миші
+    const statBlocks = document.querySelectorAll('.stats div');
 
-    stats.addEventListener('mousemove', (e) => {
-      const rect = stats.getBoundingClientRect();
-      const x = e.clientX - rect.left; // X позиція відносно блока
-      const y = e.clientY - rect.top;  // Y позиція
+    statBlocks.forEach(block => {
+      block.addEventListener('mousemove', (e) => {
+        const rect = block.getBoundingClientRect();
+        const x = e.clientX - rect.left; // X позиція всередині блока
+        const y = e.clientY - rect.top;  // Y позиція
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
 
-      // Відстань від центру - в межах -1 до 1
-      const deltaX = (x - centerX) / centerX;
-      const deltaY = (y - centerY) / centerY;
+        const deltaX = (x - centerX) / centerX; // -1 до 1
+        const deltaY = (y - centerY) / centerY; // -1 до 1
 
-      const maxRotate = 10; // максимально кут нахилу в градусах
+        const maxRotate = 15; // макс кут нахилу
 
-      // Поворот навколо Y по X, і навколо X по Y (3D нахил)
-      stats.style.transform = `rotateX(${ -deltaY * maxRotate }deg) rotateY(${ deltaX * maxRotate }deg)`;
-    });
+        const rotateX = -deltaY * maxRotate;
+        const rotateY = deltaX * maxRotate;
 
-    stats.addEventListener('mouseleave', () => {
-      stats.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        block.style.transform = `perspective(400px) scale(1.1) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        block.style.transition = 'transform 0.1s ease-out';
+        block.style.zIndex = '10';
+        block.style.boxShadow = '0 10px 20px rgba(255, 0, 0, 0.6)';
+      });
+
+      block.addEventListener('mouseleave', () => {
+        block.style.transform = 'none';
+        block.style.transition = 'transform 0.3s ease-in';
+        block.style.zIndex = '1';
+        block.style.boxShadow = 'none';
+      });
     });
   </script>
 </body>
