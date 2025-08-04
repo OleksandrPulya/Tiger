@@ -210,8 +210,36 @@
       background: #141414;
       text-align: center;
       perspective: 800px; /* ✅ додаємо перспективу */
-      flex-direction: column; /* щоб заголовок був зверху */
+      flex-direction: column;
       align-items: center;
+    }
+
+    .stats-header {
+      max-width: 400px; /* зроблено вужчим */
+      margin-bottom: 30px;
+      background-color: #1a1a1a;
+      border: 2px solid #2c2c2c;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transform-style: preserve-3d;
+    }
+
+    .stats-header h2 {
+      margin: 0;
+      color: #ff1e1e;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+
+    .stats-cards-wrapper {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      width: 100%;
+      gap: 15px;
     }
 
     .stats-card {
@@ -230,22 +258,6 @@
     .stats-card:hover {
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
       cursor: pointer;
-    }
-
-    /* Додатковий стиль для заголовка "ЧОМУ НАС ОБИРАЮТЬ" */
-    .stats-header {
-      width: 400px !important; /* Вужча */
-      margin: 0 auto 30px auto !important; /* Центрування та відступ знизу */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      transform-style: preserve-3d;
-    }
-
-    .stats-header h2 {
-      margin: 0;
-      color: #ff1e1e;
-      font-size: 1.8rem;
-      letter-spacing: 2px;
     }
 
     .services, .gallery {
@@ -302,19 +314,6 @@
       .phone-diamond {
         display: none;
       }
-
-      .stats {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .stats-card {
-        width: 90% !important;
-      }
-
-      .stats-header {
-        width: 90% !important;
-      }
     }
   </style>
 </head>
@@ -357,10 +356,12 @@
     <div class="stats-card stats-header">
       <h2>ЧОМУ НАС ОБИРАЮТЬ</h2>
     </div>
-    <div class="stats-card"><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
-    <div class="stats-card"><h2>15000+</h2><p>Клієнтів</p></div>
-    <div class="stats-card"><h2>5000+</h2><p>Об'єктів під охороною</p></div>
-    <div class="stats-card"><h2>24/7</h2><p>Моніторинг та реагування</p></div>
+    <div class="stats-cards-wrapper">
+      <div class="stats-card"><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
+      <div class="stats-card"><h2>15000+</h2><p>Клієнтів</p></div>
+      <div class="stats-card"><h2>5000+</h2><p>Об'єктів під охороною</p></div>
+      <div class="stats-card"><h2>24/7</h2><p>Моніторинг та реагування</p></div>
+    </div>
   </section>
 
   <section class="services" id="services">
@@ -368,46 +369,79 @@
     <div class="cards">
       <div class="card">
         <h3>ПУЛЬТОВА ОХОРОНА КВАРТИР</h3>
-        <p>Гарантія своєчасного виявлення і нейтралізації загроз</p>
+        <p>Гарантія своєчасного виявлення і нейтралізації загроз безпеці Вашого житла.</p>
       </div>
       <div class="card">
-        <h3>ОСОБИСТА ОХОРОНА (VIP)</h3>
-        <p>Ми впораємось з будь-якою ситуацією</p>
+        <h3>ФІЗИЧНА ОХОРОНА ОБ'ЄКТІВ</h3>
+        <p>Кваліфіковані охоронці з досвідом забезпечать цілодобову безпеку на Вашому підприємстві.</p>
       </div>
       <div class="card">
-        <h3>ПРОТИПОЖЕЖНА ОХОРОНА</h3>
-        <p>Комплекс послуг з впровадження систем протипожежного захисту</p>
+        <h3>ОХОРОНА ПОДІЙ ТА ЗАХОДІВ</h3>
+        <p>Професійна організація безпеки під час масових заходів та приватних подій.</p>
       </div>
     </div>
   </section>
 
   <section class="gallery" id="gallery">
-    <h2>ГАЛЕРЕЯ</h2>
+    <h2>НАШІ ОБ'ЄКТИ</h2>
     <div>
-      <img src="guard1.jpg" alt="Охоронець">
-      <img src="guard2.jpg" alt="ТИГР екіпірування">
-      <img src="car1.jpg" alt="Машина TIGR">
-      <img src="badge.jpg" alt="Логотип TIGR">
+      <img src="object1.jpg" alt="Об'єкт 1">
+      <img src="object2.jpg" alt="Об'єкт 2">
+      <img src="object3.jpg" alt="Об'єкт 3">
     </div>
   </section>
 
   <script>
-    // Копіювання телефону
-    const phoneNumber = document.getElementById('phone-number');
+    // Копіювання номера телефону у буфер обміну та показ повідомлення
+    const phoneElements = [document.getElementById('phone-number'), document.getElementById('header-phone')];
     const tooltip = document.getElementById('tooltip');
-    phoneNumber.addEventListener('click', () => {
-      navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
-        tooltip.classList.add('show-tooltip');
-        setTimeout(() => tooltip.classList.remove('show-tooltip'), 1500);
+    const headerTooltip = document.getElementById('header-tooltip');
+
+    phoneElements.forEach(el => {
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', () => {
+        navigator.clipboard.writeText(el.textContent).then(() => {
+          if (el.id === 'phone-number') {
+            tooltip.classList.add('show-tooltip');
+            setTimeout(() => tooltip.classList.remove('show-tooltip'), 1500);
+          } else if (el.id === 'header-phone') {
+            headerTooltip.classList.add('show-tooltip');
+            setTimeout(() => headerTooltip.classList.remove('show-tooltip'), 1500);
+          }
+        });
       });
     });
 
-    const headerPhone = document.getElementById('header-phone');
-    const headerTooltip = document.getElementById('header-tooltip');
-    headerPhone.addEventListener('click', () => {
-      navigator.clipboard.writeText(headerPhone.innerText).then(() => {
-        headerTooltip.classList.add('show-tooltip');
-        setTimeout(() => headerTooltip.classList.remove('show-tooltip'), 1500);
+    // Анімація картинки в .hero-image з 3D обертанням і збільшенням
+    const heroImage = document.querySelector(".hero-image img");
+    document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * 7;
+      const rotateY = ((x - centerX) / centerX) * 7;
+      heroImage.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+    document.querySelector(".hero-image").addEventListener("mouseleave", () => {
+      heroImage.style.transform = "rotateX(0) rotateY(0) scale(1)";
+    });
+
+    // 3D ефект для карток .stats-card при наведенні
+    document.querySelectorAll('.stats-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * 5;
+        const rotateY = ((x - centerX) / centerX) * 5;
+        card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      card.addEventListener('mouseleave', e => {
+        e.currentTarget.style.transform = 'rotateX(0) rotateY(0)';
       });
     });
   </script>
