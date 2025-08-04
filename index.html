@@ -202,40 +202,20 @@
       will-change: transform;
     }
 
+    /* Оновлений стиль для секції stats */
     .stats {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+      flex-direction: column;
+      align-items: center;
       padding: 40px 20px;
       background: #141414;
       text-align: center;
-      perspective: 800px; /* ✅ додаємо перспективу */
+      perspective: 800px; /* перспектива для 3D ефекту */
     }
 
-    .stats-card {
-      margin: 10px;
-      padding: 20px;
-      background-color: #1a1a1a;
-      border: 2px solid #2c2c2c;
-      border-radius: 10px;
-      width: 200px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      transform-style: preserve-3d; /* ✅ потрібно для 3D ефекту */
-      will-change: transform;
-    }
-
-    .stats-card:hover {
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-      cursor: pointer;
-    }
-
-    /* Додатковий стиль для заголовка "ЧОМУ НАС ОБИРАЮТЬ" */
     .stats-header {
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto 30px auto;
-      text-align: center;
+      width: 400px; /* вужча ширина */
+      margin-bottom: 30px;
       background-color: #1a1a1a;
       border: 2px solid #2c2c2c;
       border-radius: 10px;
@@ -250,6 +230,34 @@
       color: #ff1e1e;
       font-size: 1.8rem;
       letter-spacing: 2px;
+    }
+
+    .stats-cards-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .stats-card {
+      margin: 10px;
+      padding: 20px;
+      background-color: #1a1a1a;
+      border: 2px solid #2c2c2c;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+      text-align: center;
+    }
+
+    .stats-card:hover {
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+      cursor: pointer;
     }
 
     .services, .gallery {
@@ -348,92 +356,36 @@
     <div class="stats-card stats-header">
       <h2>ЧОМУ НАС ОБИРАЮТЬ</h2>
     </div>
-    <div class="stats-card"><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
-    <div class="stats-card"><h2>15000+</h2><p>Клієнтів</p></div>
-    <div class="stats-card"><h2>5000+</h2><p>Об'єктів під охороною</p></div>
-    <div class="stats-card"><h2>24/7</h2><p>Моніторинг та реагування</p></div>
-  </section>
-
-  <section class="services" id="services">
-    <h2>МИ НАДАЄМО ШИРОКИЙ ВИБІР ПОСЛУГ</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>ПУЛЬТОВА ОХОРОНА КВАРТИР</h3>
-        <p>Гарантія своєчасного виявлення і нейтралізації загроз</p>
-      </div>
-      <div class="card">
-        <h3>ОСОБИСТА ОХОРОНА (VIP)</h3>
-        <p>Ми впораємось з будь-якою ситуацією</p>
-      </div>
-      <div class="card">
-        <h3>ПРОТИПОЖЕЖНА ОХОРОНА</h3>
-        <p>Комплекс послуг з впровадження систем протипожежного захисту</p>
-      </div>
+    <div class="stats-cards-wrapper">
+      <div class="stats-card"><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
+      <div class="stats-card"><h2>15000+</h2><p>Клієнтів</p></div>
+      <div class="stats-card"><h2>5000+</h2><p>Об'єктів під охороною</p></div>
+      <div class="stats-card"><h2>24/7</h2><p>Моніторинг та реагування</p></div>
     </div>
   </section>
 
-  <section class="gallery" id="gallery">
-    <h2>ГАЛЕРЕЯ</h2>
-    <div>
-      <img src="guard1.jpg" alt="Охоронець">
-      <img src="guard2.jpg" alt="ТИГР екіпірування">
-      <img src="car1.jpg" alt="Машина TIGR">
-      <img src="badge.jpg" alt="Логотип TIGR">
-    </div>
-  </section>
+  <!-- Приклад секції послуг, новин, галереї можна додати нижче -->
+  <!-- ... -->
 
   <script>
-    // Копіювання телефону
-    const phoneNumber = document.getElementById('phone-number');
-    const tooltip = document.getElementById('tooltip');
-    phoneNumber.addEventListener('click', () => {
-      navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
-        tooltip.classList.add('show-tooltip');
-        setTimeout(() => tooltip.classList.remove('show-tooltip'), 1500);
-      });
-    });
+    // Функція копіювання номера телефону і показу тултіпа
+    function setupCopyToClipboard(idSelector, tooltipSelector) {
+      const element = document.querySelector(idSelector);
+      const tooltip = document.querySelector(tooltipSelector);
 
-    const headerPhone = document.getElementById('header-phone');
-    const headerTooltip = document.getElementById('header-tooltip');
-    headerPhone.addEventListener('click', () => {
-      navigator.clipboard.writeText(headerPhone.innerText).then(() => {
-        headerTooltip.classList.add('show-tooltip');
-        setTimeout(() => headerTooltip.classList.remove('show-tooltip'), 1500);
+      element.addEventListener('click', () => {
+        const phoneNumber = element.textContent.trim();
+        navigator.clipboard.writeText(phoneNumber).then(() => {
+          tooltip.classList.add('show-tooltip');
+          setTimeout(() => {
+            tooltip.classList.remove('show-tooltip');
+          }, 1500);
+        });
       });
-    });
+    }
 
-    // Анімація картинки
-    const heroImage = document.querySelector(".hero-image img");
-    document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * 7; // кут по X
-      const rotateY = ((x - centerX) / centerX) * 7; // кут по Y
-      heroImage.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-    document.querySelector(".hero-image").addEventListener("mouseleave", () => {
-      heroImage.style.transform = "rotateX(0) rotateY(0)";
-    });
-
-    // 3D ефект для карток статистики при наведенні
-    document.querySelectorAll('.stats-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * 5;
-        const rotateY = ((x - centerX) / centerX) * 5;
-        card.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-      card.addEventListener('mouseleave', e => {
-        e.currentTarget.style.transform = 'rotateX(0) rotateY(0)';
-      });
-    });
+    setupCopyToClipboard('#phone-number', '#tooltip');
+    setupCopyToClipboard('#header-phone', '#header-tooltip');
   </script>
 </body>
 </html>
