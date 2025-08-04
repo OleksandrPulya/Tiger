@@ -204,9 +204,10 @@
 
     .stats {
       display: flex;
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-items: center;
+      flex-direction: column; /* щоб заголовок був зверху */
+      align-items: center; /* центр по горизонталі */
+      flex-wrap: wrap;
+      justify-content: center;
       padding: 40px 20px;
       background: #141414;
       text-align: center;
@@ -214,8 +215,9 @@
     }
 
     .stats-header {
-      width: 400px;
-      margin: 0 0 30px 0;
+      width: 300px; /* зроблено вужче */
+      margin: 0 auto 30px auto; /* центр по горизонталі */
+      text-align: center;
       background-color: #1a1a1a;
       border: 2px solid #2c2c2c;
       border-radius: 10px;
@@ -230,15 +232,6 @@
       color: #ff1e1e;
       font-size: 1.8rem;
       letter-spacing: 2px;
-    }
-
-    .stats-cards-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      width: 100%;
-      max-width: 1000px;
     }
 
     .stats-card {
@@ -258,9 +251,6 @@
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
       cursor: pointer;
     }
-
-    /* Додатковий стиль для заголовка "ЧОМУ НАС ОБИРАЮТЬ" */
-    /* Вже описаний у .stats-header */
 
     .services, .gallery {
       padding: 60px 20px;
@@ -316,20 +306,6 @@
       .phone-diamond {
         display: none;
       }
-
-      .stats-header {
-        width: 90%;
-      }
-
-      .stats-cards-wrapper {
-        max-width: 100%;
-        gap: 10px;
-      }
-
-      .stats-card {
-        width: 45%;
-        margin: 10px 5px;
-      }
     }
   </style>
 </head>
@@ -372,53 +348,58 @@
     <div class="stats-card stats-header">
       <h2>ЧОМУ НАС ОБИРАЮТЬ</h2>
     </div>
-    <div class="stats-cards-wrapper">
-      <div class="stats-card"><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
-      <div class="stats-card"><h2>15000+</h2><p>Клієнтів</p></div>
-      <div class="stats-card"><h2>5000+</h2><p>Об'єктів під охороною</p></div>
-      <div class="stats-card"><h2>24/7</h2><p>Моніторинг та реагування</p></div>
+    <div class="stats-card"><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
+    <div class="stats-card"><h2>15000+</h2><p>Клієнтів</p></div>
+    <div class="stats-card"><h2>5000+</h2><p>Об'єктів під охороною</p></div>
+    <div class="stats-card"><h2>24/7</h2><p>Моніторинг та реагування</p></div>
+  </section>
+
+  <section class="services" id="services">
+    <h2>МИ НАДАЄМО ШИРОКИЙ ВИБІР ПОСЛУГ</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>ПУЛЬТОВА ОХОРОНА КВАРТИР</h3>
+        <p>Гарантія своєчасного виявлення і нейтралізації загроз</p>
+      </div>
+      <div class="card">
+        <h3>ОСОБИСТА ОХОРОНА (VIP)</h3>
+        <p>Ми впораємось з будь-якою ситуацією</p>
+      </div>
+      <div class="card">
+        <h3>ПРОТИПОЖЕЖНА ОХОРОНА</h3>
+        <p>Комплекс послуг з впровадження систем протипожежного захисту</p>
+      </div>
     </div>
   </section>
 
-  <!-- Інші секції можна додати тут -->
+  <section class="gallery" id="gallery">
+    <h2>ГАЛЕРЕЯ</h2>
+    <div>
+      <img src="guard1.jpg" alt="Охоронець">
+      <img src="guard2.jpg" alt="ТИГР екіпірування">
+      <img src="car1.jpg" alt="Машина TIGR">
+      <img src="badge.jpg" alt="Логотип TIGR">
+    </div>
+  </section>
 
   <script>
-    // Копіювання номера телефону з підказкою
-    function copyPhoneNumber(elementId, tooltipId) {
-      const phoneElem = document.getElementById(elementId);
-      const tooltip = document.getElementById(tooltipId);
-      if (!phoneElem) return;
-      phoneElem.addEventListener('click', () => {
-        const text = phoneElem.textContent || phoneElem.innerText;
-        navigator.clipboard.writeText(text.trim()).then(() => {
-          tooltip.classList.add('show-tooltip');
-          setTimeout(() => {
-            tooltip.classList.remove('show-tooltip');
-          }, 2000);
-        });
+    function copyToClipboard(text, tooltipId) {
+      navigator.clipboard.writeText(text).then(() => {
+        const tooltip = document.getElementById(tooltipId);
+        tooltip.classList.add('show-tooltip');
+        setTimeout(() => {
+          tooltip.classList.remove('show-tooltip');
+        }, 1200);
       });
     }
 
-    copyPhoneNumber('phone-number', 'tooltip');
-    copyPhoneNumber('header-phone', 'header-tooltip');
+    document.getElementById('phone-number').addEventListener('click', () => {
+      copyToClipboard('0800-30-47-74', 'tooltip');
+    });
 
-    // Ефект нахилу картинки героя при русі миші
-    const heroImage = document.querySelector('.hero-image img');
-    if (heroImage) {
-      document.querySelector('.hero-image').addEventListener('mousemove', (e) => {
-        const rect = heroImage.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const deltaX = (x - centerX) / centerX;
-        const deltaY = (y - centerY) / centerY;
-        heroImage.style.transform = `rotateX(${-deltaY * 8}deg) rotateY(${deltaX * 8}deg)`;
-      });
-      document.querySelector('.hero-image').addEventListener('mouseleave', () => {
-        heroImage.style.transform = 'rotateX(0) rotateY(0)';
-      });
-    }
+    document.getElementById('header-phone').addEventListener('click', () => {
+      copyToClipboard('0800-30-47-74', 'header-tooltip');
+    });
   </script>
 </body>
 </html>
