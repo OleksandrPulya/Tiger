@@ -211,7 +211,7 @@
       text-align: center;
     }
 
-    .stats div {
+    .stats-card {
       margin: 10px;
       padding: 20px;
       background-color: #1a1a1a;
@@ -219,6 +219,15 @@
       border-radius: 10px;
       width: 200px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      perspective: 1000px;
+      will-change: transform;
+    }
+
+    .stats-card:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+      cursor: pointer;
     }
 
     .services, .gallery {
@@ -314,10 +323,10 @@
   </section>
 
   <section class="stats">
-    <div><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
-    <div><h2>15000+</h2><p>Клієнтів</p></div>
-    <div><h2>5000+</h2><p>Об'єктів під охороною</p></div>
-    <div><h2>24/7</h2><p>Моніторинг та реагування</p></div>
+    <div class="stats-card"><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
+    <div class="stats-card"><h2>15000+</h2><p>Клієнтів</p></div>
+    <div class="stats-card"><h2>5000+</h2><p>Об'єктів під охороною</p></div>
+    <div class="stats-card"><h2>24/7</h2><p>Моніторинг та реагування</p></div>
   </section>
 
   <section class="services" id="services">
@@ -349,34 +358,27 @@
   </section>
 
   <script>
+    // Копіювання телефону
     const phoneNumber = document.getElementById('phone-number');
     const tooltip = document.getElementById('tooltip');
-
     phoneNumber.addEventListener('click', () => {
-      const number = phoneNumber.innerText;
-      navigator.clipboard.writeText(number).then(() => {
+      navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
         tooltip.classList.add('show-tooltip');
-        setTimeout(() => {
-          tooltip.classList.remove('show-tooltip');
-        }, 1500);
+        setTimeout(() => tooltip.classList.remove('show-tooltip'), 1500);
       });
     });
 
     const headerPhone = document.getElementById('header-phone');
     const headerTooltip = document.getElementById('header-tooltip');
-
     headerPhone.addEventListener('click', () => {
-      const number = headerPhone.innerText;
-      navigator.clipboard.writeText(number).then(() => {
+      navigator.clipboard.writeText(headerPhone.innerText).then(() => {
         headerTooltip.classList.add('show-tooltip');
-        setTimeout(() => {
-          headerTooltip.classList.remove('show-tooltip');
-        }, 1500);
+        setTimeout(() => headerTooltip.classList.remove('show-tooltip'), 1500);
       });
     });
 
+    // Анімація картинки
     const heroImage = document.querySelector(".hero-image img");
-
     document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
       const rect = e.currentTarget.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -385,12 +387,29 @@
       const centerY = rect.height / 2;
       const rotateX = ((y - centerY) / centerY) * -40;
       const rotateY = ((x - centerX) / centerX) * 40;
-
       heroImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.1)`;
     });
 
     document.querySelector(".hero-image").addEventListener("mouseleave", () => {
       heroImage.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+    });
+
+    // 3D ефект для .stats-card
+    document.querySelectorAll(".stats-card").forEach(card => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.07)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+      });
     });
   </script>
 </body>
