@@ -204,34 +204,14 @@
 
     .stats {
       display: flex;
-      flex-direction: column; /* щоб заголовок був зверху */
-      align-items: center; /* центр по горизонталі */
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-around;
       padding: 40px 20px;
       background: #141414;
       text-align: center;
-      perspective: 800px;
-    }
-
-    .stats-header {
-      width: 300px; /* зроблено вужче */
-      margin: 0 auto 30px auto; /* центр по горизонталі */
-      text-align: center;
-      background-color: #1a1a1a;
-      border: 2px solid #2c2c2c;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      transform-style: preserve-3d;
-    }
-
-    .stats-header h2 {
-      margin: 0;
-      color: #ff1e1e;
-      font-size: 1.8rem;
-      letter-spacing: 2px;
+      perspective: 800px; /* ✅ додаємо перспективу */
+      flex-direction: column; /* щоб заголовок був зверху */
+      align-items: center;
     }
 
     .stats-card {
@@ -243,13 +223,29 @@
       width: 200px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      transform-style: preserve-3d;
+      transform-style: preserve-3d; /* ✅ потрібно для 3D ефекту */
       will-change: transform;
     }
 
     .stats-card:hover {
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
       cursor: pointer;
+    }
+
+    /* Додатковий стиль для заголовка "ЧОМУ НАС ОБИРАЮТЬ" */
+    .stats-header {
+      width: 400px !important; /* Вужча */
+      margin: 0 auto 30px auto !important; /* Центрування та відступ знизу */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transform-style: preserve-3d;
+    }
+
+    .stats-header h2 {
+      margin: 0;
+      color: #ff1e1e;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
     }
 
     .services, .gallery {
@@ -305,6 +301,19 @@
 
       .phone-diamond {
         display: none;
+      }
+
+      .stats {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .stats-card {
+        width: 90% !important;
+      }
+
+      .stats-header {
+        width: 90% !important;
       }
     }
   </style>
@@ -383,22 +392,23 @@
   </section>
 
   <script>
-    function copyToClipboard(text, tooltipId) {
-      navigator.clipboard.writeText(text).then(() => {
-        const tooltip = document.getElementById(tooltipId);
+    // Копіювання телефону
+    const phoneNumber = document.getElementById('phone-number');
+    const tooltip = document.getElementById('tooltip');
+    phoneNumber.addEventListener('click', () => {
+      navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
         tooltip.classList.add('show-tooltip');
-        setTimeout(() => {
-          tooltip.classList.remove('show-tooltip');
-        }, 1200);
+        setTimeout(() => tooltip.classList.remove('show-tooltip'), 1500);
       });
-    }
-
-    document.getElementById('phone-number').addEventListener('click', () => {
-      copyToClipboard('0800-30-47-74', 'tooltip');
     });
 
-    document.getElementById('header-phone').addEventListener('click', () => {
-      copyToClipboard('0800-30-47-74', 'header-tooltip');
+    const headerPhone = document.getElementById('header-phone');
+    const headerTooltip = document.getElementById('header-tooltip');
+    headerPhone.addEventListener('click', () => {
+      navigator.clipboard.writeText(headerPhone.innerText).then(() => {
+        headerTooltip.classList.add('show-tooltip');
+        setTimeout(() => headerTooltip.classList.remove('show-tooltip'), 1500);
+      });
     });
   </script>
 </body>
