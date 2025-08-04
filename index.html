@@ -202,20 +202,20 @@
       will-change: transform;
     }
 
-    /* Оновлений стиль для секції stats */
     .stats {
       display: flex;
       flex-direction: column;
+      flex-wrap: nowrap;
       align-items: center;
       padding: 40px 20px;
       background: #141414;
       text-align: center;
-      perspective: 800px; /* перспектива для 3D ефекту */
+      perspective: 800px;
     }
 
     .stats-header {
-      width: 400px; /* вужча ширина */
-      margin-bottom: 30px;
+      width: 400px;
+      margin: 0 0 30px 0;
       background-color: #1a1a1a;
       border: 2px solid #2c2c2c;
       border-radius: 10px;
@@ -234,9 +234,9 @@
 
     .stats-cards-wrapper {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      flex-wrap: wrap;
       width: 100%;
       max-width: 1000px;
     }
@@ -252,13 +252,15 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       transform-style: preserve-3d;
       will-change: transform;
-      text-align: center;
     }
 
     .stats-card:hover {
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
       cursor: pointer;
     }
+
+    /* Додатковий стиль для заголовка "ЧОМУ НАС ОБИРАЮТЬ" */
+    /* Вже описаний у .stats-header */
 
     .services, .gallery {
       padding: 60px 20px;
@@ -314,6 +316,20 @@
       .phone-diamond {
         display: none;
       }
+
+      .stats-header {
+        width: 90%;
+      }
+
+      .stats-cards-wrapper {
+        max-width: 100%;
+        gap: 10px;
+      }
+
+      .stats-card {
+        width: 45%;
+        margin: 10px 5px;
+      }
     }
   </style>
 </head>
@@ -364,28 +380,45 @@
     </div>
   </section>
 
-  <!-- Приклад секції послуг, новин, галереї можна додати нижче -->
-  <!-- ... -->
+  <!-- Інші секції можна додати тут -->
 
   <script>
-    // Функція копіювання номера телефону і показу тултіпа
-    function setupCopyToClipboard(idSelector, tooltipSelector) {
-      const element = document.querySelector(idSelector);
-      const tooltip = document.querySelector(tooltipSelector);
-
-      element.addEventListener('click', () => {
-        const phoneNumber = element.textContent.trim();
-        navigator.clipboard.writeText(phoneNumber).then(() => {
+    // Копіювання номера телефону з підказкою
+    function copyPhoneNumber(elementId, tooltipId) {
+      const phoneElem = document.getElementById(elementId);
+      const tooltip = document.getElementById(tooltipId);
+      if (!phoneElem) return;
+      phoneElem.addEventListener('click', () => {
+        const text = phoneElem.textContent || phoneElem.innerText;
+        navigator.clipboard.writeText(text.trim()).then(() => {
           tooltip.classList.add('show-tooltip');
           setTimeout(() => {
             tooltip.classList.remove('show-tooltip');
-          }, 1500);
+          }, 2000);
         });
       });
     }
 
-    setupCopyToClipboard('#phone-number', '#tooltip');
-    setupCopyToClipboard('#header-phone', '#header-tooltip');
+    copyPhoneNumber('phone-number', 'tooltip');
+    copyPhoneNumber('header-phone', 'header-tooltip');
+
+    // Ефект нахилу картинки героя при русі миші
+    const heroImage = document.querySelector('.hero-image img');
+    if (heroImage) {
+      document.querySelector('.hero-image').addEventListener('mousemove', (e) => {
+        const rect = heroImage.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const deltaX = (x - centerX) / centerX;
+        const deltaY = (y - centerY) / centerY;
+        heroImage.style.transform = `rotateX(${-deltaY * 8}deg) rotateY(${deltaX * 8}deg)`;
+      });
+      document.querySelector('.hero-image').addEventListener('mouseleave', () => {
+        heroImage.style.transform = 'rotateX(0) rotateY(0)';
+      });
+    }
   </script>
 </body>
 </html>
