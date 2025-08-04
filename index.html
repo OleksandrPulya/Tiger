@@ -212,7 +212,13 @@
     }
 
     .stats div {
-      margin: 10px 0;
+      margin: 10px;
+      padding: 20px;
+      background-color: #1a1a1a;
+      border: 2px solid #2c2c2c;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     }
 
     .services, .gallery {
@@ -343,7 +349,6 @@
   </section>
 
   <script>
-    // Копіювання номера телефону в hero тільки при кліку на номер
     const phoneNumber = document.getElementById('phone-number');
     const tooltip = document.getElementById('tooltip');
 
@@ -357,16 +362,6 @@
       });
     });
 
-    // Зміна кольору номера при наведенні (вже реалізовано CSS :hover, можна видалити JS, якщо хочеш)
-    // phoneNumber.addEventListener('mouseenter', () => {
-    //   phoneNumber.style.color = '#ff1e1e';
-    // });
-
-    // phoneNumber.addEventListener('mouseleave', () => {
-    //   phoneNumber.style.color = 'inherit';
-    // });
-
-    // Копіювання номера з шапки
     const headerPhone = document.getElementById('header-phone');
     const headerTooltip = document.getElementById('header-tooltip');
 
@@ -380,7 +375,6 @@
       });
     });
 
-    // Анімація картинки
     const heroImage = document.querySelector(".hero-image img");
 
     document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
