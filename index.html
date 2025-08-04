@@ -402,7 +402,7 @@
       });
     });
 
-    // Анімація картинки
+    // Анімація картинки (з посиленим рухом)
     const heroImage = document.querySelector(".hero-image img");
     document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
       const rect = e.currentTarget.getBoundingClientRect();
@@ -410,29 +410,13 @@
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * 7; // кут по X
-      const rotateY = ((x - centerX) / centerX) * 7; // кут по Y
-      heroImage.style.transform = rotateX(${-rotateX}deg) rotateY(${rotateY}deg);
-    });
-    document.querySelector(".hero-image").addEventListener("mouseleave", () => {
-      heroImage.style.transform = "rotateX(0) rotateY(0)";
+      const rotateX = ((y - centerY) / centerY) * 15; // збільшили множник з 7 на 15
+      const rotateY = ((x - centerX) / centerX) * 15;
+      heroImage.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
-    // 3D ефект для карток статистики при наведенні
-    document.querySelectorAll('.stats-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * 5;
-        const rotateY = ((x - centerX) / centerX) * 5;
-        card.style.transform = rotateX(${-rotateX}deg) rotateY(${rotateY}deg);
-      });
-      card.addEventListener('mouseleave', e => {
-        e.currentTarget.style.transform = 'rotateX(0) rotateY(0)';
-      });
+    document.querySelector(".hero-image").addEventListener("mouseleave", () => {
+      heroImage.style.transform = "rotateX(0) rotateY(0)";
     });
   </script>
 </body>
