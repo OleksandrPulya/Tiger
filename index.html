@@ -234,7 +234,6 @@
 
     .stats-header:hover {
       box-shadow: 0 0 25px 5px rgba(255, 0, 0, 0.7);
-      border-color: red; /* Додано: обведення червоним при ховері */
     }
 
     .stats-header h2 {
@@ -261,7 +260,7 @@
       border-radius: 10px;
       width: 200px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; /* Додано border-color */
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       transform-style: preserve-3d;
       will-change: transform;
     }
@@ -269,7 +268,6 @@
     .stats-card:hover {
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
       cursor: pointer;
-      border-color: red; /* Додано: обведення червоним при ховері */
     }
 
     .services, .gallery {
@@ -387,78 +385,76 @@
       <h2>ЧОМУ НАС ОБИРАЮТЬ</h2>
     </div>
     <div class="stats-row">
-      <div class="stats-card"><h2>13 РОКІВ</h2><p>Досвіду роботи</p></div>
-      <div class="stats-card"><h2>100+</h2><p>Охоронних об’єктів</p></div>
-      <div class="stats-card"><h2>3000+</h2><p>Задоволених клієнтів</p></div>
-      <div class="stats-card"><h2>24/7</h2><p>Підтримка</p></div>
+      <div class="stats-card"><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
+      <div class="stats-card"><h2>15000+</h2><p>Клієнтів</p></div>
+      <div class="stats-card"><h2>5000+</h2><p>Об'єктів під охороною</p></div>
+      <div class="stats-card"><h2>24/7</h2><p>Моніторинг та реагування</p></div>
     </div>
   </section>
 
-  <section id="services" class="services">
+  <section class="services" id="services">
     <div class="services-header">
-      <h2>Наші послуги</h2>
+      <h2>МИ НАДАЄМО ШИРОКИЙ ВИБІР ПОСЛУГ</h2>
     </div>
     <div class="cards">
       <div class="card">
-        <h3>Охорона приміщень</h3>
-        <p>Надійний захист вашого майна.</p>
+        <h3>ПУЛЬТОВА ОХОРОНА КВАРТИР</h3>
+        <p>Гарантія своєчасного виявлення і нейтралізації загроз</p>
       </div>
       <div class="card">
-        <h3>Охорона заходів</h3>
-        <p>Професійна охорона на будь-яких подіях.</p>
+        <h3>ОСОБИСТА ОХОРОНА (VIP)</h3>
+        <p>Ми впораємось з будь-якою ситуацією</p>
       </div>
       <div class="card">
-        <h3>Моніторинг сигналізацій</h3>
-        <p>24/7 контроль безпеки об'єктів.</p>
+        <h3>ПРОТИПОЖЕЖНА ОХОРОНА</h3>
+        <p>Комплекс послуг з впровадження систем протипожежного захисту</p>
       </div>
     </div>
   </section>
 
-  <section id="gallery" class="gallery">
-    <img src="gallery1.jpg" alt="Фото 1" />
-    <img src="gallery2.jpg" alt="Фото 2" />
-    <img src="gallery3.jpg" alt="Фото 3" />
+  <section class="gallery" id="gallery">
+    <h2>ГАЛЕРЕЯ</h2>
+    <div>
+      <img src="guard1.jpg" alt="Охоронець">
+      <img src="guard2.jpg" alt="ТИГР екіпірування">
+      <img src="car1.jpg" alt="Машина TIGR">
+      <img src="badge.jpg" alt="Логотип TIGR">
+    </div>
   </section>
 
   <script>
-    // Копіювання номера телефону з хедера
-    const headerPhone = document.getElementById('header-phone');
-    const headerTooltip = document.getElementById('header-tooltip');
-
-    headerPhone.addEventListener('click', () => {
-      navigator.clipboard.writeText(headerPhone.textContent).then(() => {
-        headerTooltip.classList.add('show-tooltip');
-        setTimeout(() => {
-          headerTooltip.classList.remove('show-tooltip');
-        }, 1500);
-      });
-    });
-
-    // Копіювання номера телефону з герою
     const phoneNumber = document.getElementById('phone-number');
     const tooltip = document.getElementById('tooltip');
-
     phoneNumber.addEventListener('click', () => {
-      navigator.clipboard.writeText(phoneNumber.textContent).then(() => {
+      navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
         tooltip.classList.add('show-tooltip');
-        setTimeout(() => {
-          tooltip.classList.remove('show-tooltip');
-        }, 1500);
+        setTimeout(() => tooltip.classList.remove('show-tooltip'), 1500);
       });
     });
 
-    // Ефект паралаксу для картинки в герої (опціонально)
-    const heroImage = document.querySelector('.hero-image img');
-
-    document.addEventListener('mousemove', (e) => {
-      const {innerWidth, innerHeight} = window;
-      const x = (e.clientX / innerWidth) - 0.5;
-      const y = (e.clientY / innerHeight) - 0.5;
-      heroImage.style.transform = `rotateY(${x * 15}deg) rotateX(${ -y * 15}deg)`;
+    const headerPhone = document.getElementById('header-phone');
+    const headerTooltip = document.getElementById('header-tooltip');
+    headerPhone.addEventListener('click', () => {
+      navigator.clipboard.writeText(headerPhone.innerText).then(() => {
+        headerTooltip.classList.add('show-tooltip');
+        setTimeout(() => headerTooltip.classList.remove('show-tooltip'), 1500);
+      });
     });
 
-    document.addEventListener('mouseleave', () => {
-      heroImage.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    const heroImage = document.querySelector(".hero-image img");
+    document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * 60;
+      const rotateY = ((x - centerX) / centerX) * 60;
+      heroImage.style.transform = rotateX(${-rotateX}deg) rotateY(${rotateY}deg);
+    });
+
+    document.querySelector(".hero-image").addEventListener("mouseleave", () => {
+      heroImage.style.transform = "rotateX(0) rotateY(0)";
     });
   </script>
 </body>
