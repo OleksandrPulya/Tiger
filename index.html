@@ -59,7 +59,6 @@
       white-space: nowrap;
       transition: color 0.3s ease;
       cursor: pointer;
-      font-weight: normal;
     }
 
     nav a:hover {
@@ -123,7 +122,6 @@
       font-size: 2.5rem;
       letter-spacing: 2px;
       box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
-      z-index: 900;
     }
 
     .hero {
@@ -142,7 +140,6 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      position: relative;
     }
 
     .hero-title p {
@@ -210,7 +207,6 @@
       border-radius: 10px;
       object-fit: contain;
       transition: transform 0.3s ease;
-      will-change: transform;
     }
 
     .stats {
@@ -228,7 +224,6 @@
       padding: 20px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       max-width: 1000px;
-      transform-style: preserve-3d;
       transition: box-shadow 0.3s ease;
     }
 
@@ -241,7 +236,6 @@
       color: #ff0000;
       font-size: 1.8rem;
       letter-spacing: 2px;
-      cursor: default;
     }
 
     .stats-row {
@@ -260,13 +254,13 @@
       border-radius: 10px;
       width: 200px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      transform-style: preserve-3d;
-      will-change: transform;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
     .stats-card:hover {
+      transform: scale(1.05);
       box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+      border-color: #ff0000;
       cursor: pointer;
     }
 
@@ -275,7 +269,6 @@
       text-align: center;
     }
 
-    /* НОВА РАМКА ДЛЯ ЗАГОЛОВКА */
     .services-header {
       border: 2px solid #444;
       padding: 20px;
@@ -323,18 +316,10 @@
         justify-content: center;
       }
 
-      nav a {
-        margin: 5px 10px;
-      }
-
       .hero {
         flex-direction: column;
         padding: 40px 20px;
         gap: 30px;
-      }
-
-      .hero-image img {
-        max-width: 100%;
       }
 
       .phone-diamond {
@@ -344,118 +329,46 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <img src="Tiger logo.png" alt="Логотип ТИГР" class="logo" />
-      <nav>
-        <a href="#about" class="btn">Про нас</a>
-        <a href="#services" class="btn">Послуги</a>
-        <a href="#news" class="btn">Новини</a>
-        <a href="#gallery" class="btn">Галерея</a>
-        <a href="#contact" class="btn">Контакти</a>
-        <a href="#sales" class="btn">Акції</a>
-      </nav>
-      <div style="position: relative;">
-        <a class="phone-diamond btn" id="header-phone">0800-30-47-74</a>
-        <div id="header-tooltip" class="copied-tooltip">Скопійовано!</div>
-      </div>
-    </div>
-  </header>
 
-  <div class="city-banner">Хмельницький</div>
+<!-- Твій HTML-контент залишається таким, як є – тобто все, що йде після <body>, не змінюється -->
 
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-title">
-        <p>ПІДРОЗДІЛ</p>
-        <p>ШВИДКОГО</p>
-        <p>РЕАГУВАННЯ</p>
-      </div>
-      <a class="hex-btn btn" href="#form">ЗАЛИШИТИ ЗАЯВКУ</a>
-      <p>Або зателефонуйте <strong id="phone-number">0800-30-47-74</strong></p>
-      <div id="tooltip" class="copied-tooltip">Скопійовано!</div>
-    </div>
-    <div class="hero-image">
-      <img src="Copilot_20250803_164540.png" alt="Охоронна компанія ТИГР">
-    </div>
-  </section>
+<!-- Сюди вставити свій HTML-розмітку з секцією .stats -->
 
-  <section class="stats">
-    <div class="stats-header">
-      <h2>ЧОМУ НАС ОБИРАЮТЬ</h2>
-    </div>
-    <div class="stats-row">
-      <div class="stats-card"><h2>13 РОКІВ</h2><p>Досвід роботи</p></div>
-      <div class="stats-card"><h2>15000+</h2><p>Клієнтів</p></div>
-      <div class="stats-card"><h2>5000+</h2><p>Об'єктів під охороною</p></div>
-      <div class="stats-card"><h2>24/7</h2><p>Моніторинг та реагування</p></div>
-    </div>
-  </section>
-
-  <section class="services" id="services">
-    <div class="services-header">
-      <h2>МИ НАДАЄМО ШИРОКИЙ ВИБІР ПОСЛУГ</h2>
-    </div>
-    <div class="cards">
-      <div class="card">
-        <h3>ПУЛЬТОВА ОХОРОНА КВАРТИР</h3>
-        <p>Гарантія своєчасного виявлення і нейтралізації загроз</p>
-      </div>
-      <div class="card">
-        <h3>ОСОБИСТА ОХОРОНА (VIP)</h3>
-        <p>Ми впораємось з будь-якою ситуацією</p>
-      </div>
-      <div class="card">
-        <h3>ПРОТИПОЖЕЖНА ОХОРОНА</h3>
-        <p>Комплекс послуг з впровадження систем протипожежного захисту</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="gallery" id="gallery">
-    <h2>ГАЛЕРЕЯ</h2>
-    <div>
-      <img src="guard1.jpg" alt="Охоронець">
-      <img src="guard2.jpg" alt="ТИГР екіпірування">
-      <img src="car1.jpg" alt="Машина TIGR">
-      <img src="badge.jpg" alt="Логотип TIGR">
-    </div>
-  </section>
-
-  <script>
-    const phoneNumber = document.getElementById('phone-number');
-    const tooltip = document.getElementById('tooltip');
-    phoneNumber.addEventListener('click', () => {
-      navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
-        tooltip.classList.add('show-tooltip');
-        setTimeout(() => tooltip.classList.remove('show-tooltip'), 1500);
-      });
+<!-- JS -->
+<script>
+  const phoneNumber = document.getElementById('phone-number');
+  const tooltip = document.getElementById('tooltip');
+  phoneNumber.addEventListener('click', () => {
+    navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
+      tooltip.classList.add('show-tooltip');
+      setTimeout(() => tooltip.classList.remove('show-tooltip'), 1500);
     });
+  });
 
-    const headerPhone = document.getElementById('header-phone');
-    const headerTooltip = document.getElementById('header-tooltip');
-    headerPhone.addEventListener('click', () => {
-      navigator.clipboard.writeText(headerPhone.innerText).then(() => {
-        headerTooltip.classList.add('show-tooltip');
-        setTimeout(() => headerTooltip.classList.remove('show-tooltip'), 1500);
-      });
+  const headerPhone = document.getElementById('header-phone');
+  const headerTooltip = document.getElementById('header-tooltip');
+  headerPhone.addEventListener('click', () => {
+    navigator.clipboard.writeText(headerPhone.innerText).then(() => {
+      headerTooltip.classList.add('show-tooltip');
+      setTimeout(() => headerTooltip.classList.remove('show-tooltip'), 1500);
     });
+  });
 
-    const heroImage = document.querySelector(".hero-image img");
-    document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * 60;
-      const rotateY = ((x - centerX) / centerX) * 60;
-      heroImage.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
-    });
+  const heroImage = document.querySelector(".hero-image img");
+  document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * 60;
+    const rotateY = ((x - centerX) / centerX) * 60;
+    heroImage.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+  });
 
-    document.querySelector(".hero-image").addEventListener("mouseleave", () => {
-      heroImage.style.transform = "rotateX(0) rotateY(0)";
-    });
-  </script>
+  document.querySelector(".hero-image").addEventListener("mouseleave", () => {
+    heroImage.style.transform = "rotateX(0) rotateY(0)";
+  });
+</script>
 </body>
 </html>
