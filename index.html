@@ -229,11 +229,12 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       max-width: 1000px;
       transform-style: preserve-3d;
-      transition: box-shadow 0.3s ease;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
     .stats-header:hover {
       box-shadow: 0 0 25px 5px rgba(255, 0, 0, 0.7);
+      border-color: red;
     }
 
     .stats-header h2 {
@@ -424,38 +425,40 @@
   </section>
 
   <script>
-    const phoneNumber = document.getElementById('phone-number');
-    const tooltip = document.getElementById('tooltip');
-    phoneNumber.addEventListener('click', () => {
-      navigator.clipboard.writeText(phoneNumber.innerText).then(() => {
+    function copyToClipboard(text, tooltip) {
+      navigator.clipboard.writeText(text).then(() => {
         tooltip.classList.add('show-tooltip');
         setTimeout(() => tooltip.classList.remove('show-tooltip'), 1500);
       });
+    }
+
+    const phoneNumber = document.getElementById('phone-number');
+    const tooltip = document.getElementById('tooltip');
+    phoneNumber.addEventListener('click', () => {
+      copyToClipboard(phoneNumber.textContent, tooltip);
     });
 
     const headerPhone = document.getElementById('header-phone');
     const headerTooltip = document.getElementById('header-tooltip');
     headerPhone.addEventListener('click', () => {
-      navigator.clipboard.writeText(headerPhone.innerText).then(() => {
-        headerTooltip.classList.add('show-tooltip');
-        setTimeout(() => headerTooltip.classList.remove('show-tooltip'), 1500);
-      });
+      copyToClipboard(headerPhone.textContent, headerTooltip);
     });
 
-    const heroImage = document.querySelector(".hero-image img");
-    document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * 60;
-      const rotateY = ((x - centerX) / centerX) * 60;
-      heroImage.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+    // 3D ефект для hero-image при наведенні
+    const heroImage = document.querySelector('.hero-image img');
+    const heroContainer = document.querySelector('.hero-image');
+
+    heroContainer.addEventListener('mousemove', (e) => {
+      const rect = heroContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotateX = (-y / (rect.height / 2)) * 15;
+      const rotateY = (x / (rect.width / 2)) * 15;
+      heroImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
-    document.querySelector(".hero-image").addEventListener("mouseleave", () => {
-      heroImage.style.transform = "rotateX(0) rotateY(0)";
+    heroContainer.addEventListener('mouseleave', () => {
+      heroImage.style.transform = 'rotateX(0) rotateY(0)';
     });
   </script>
 </body>
