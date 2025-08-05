@@ -115,7 +115,6 @@
       opacity: 1;
     }
 
-    /* ДОДАНО: СТИЛІ ДЛЯ ХМЕЛЬНИЦЬКИЙ */
     .city-banner {
       background-color: #1a1a1a;
       color: #ffffff;
@@ -276,6 +275,22 @@
       text-align: center;
     }
 
+    /* НОВА РАМКА ДЛЯ ЗАГОЛОВКА */
+    .services-header {
+      border: 2px solid #444;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(255, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .services-header:hover {
+      box-shadow: 0 0 25px 5px rgba(255, 0, 0, 0.7);
+      border-color: red;
+    }
+
     .cards {
       display: flex;
       justify-content: center;
@@ -347,7 +362,6 @@
     </div>
   </header>
 
-  <!-- ДОДАНО: ХМЕЛЬНИЦЬКИЙ -->
   <div class="city-banner">Хмельницький</div>
 
   <section class="hero">
@@ -379,7 +393,9 @@
   </section>
 
   <section class="services" id="services">
-    <h2>МИ НАДАЄМО ШИРОКИЙ ВИБІР ПОСЛУГ</h2>
+    <div class="services-header">
+      <h2>МИ НАДАЄМО ШИРОКИЙ ВИБІР ПОСЛУГ</h2>
+    </div>
     <div class="cards">
       <div class="card">
         <h3>ПУЛЬТОВА ОХОРОНА КВАРТИР</h3>
