@@ -222,9 +222,15 @@
 
     .stats-header h2 {
       margin: 0;
-      color: #ff1e1e;
+      color: #ff0000; /* насичений червоний */
       font-size: 1.8rem;
       letter-spacing: 2px;
+      transition: color 0.3s ease;
+      cursor: default;
+    }
+
+    .stats-header h2:hover {
+      color: #ff3333; /* яскравіший червоний при наведенні */
     }
 
     .stats-row {
@@ -345,7 +351,6 @@
     </div>
   </section>
 
-  <!-- Виправлений блок статистики -->
   <section class="stats">
     <div class="stats-header">
       <h2>ЧОМУ НАС ОБИРАЮТЬ</h2>
@@ -387,7 +392,6 @@
   </section>
 
   <script>
-    // Копіювання телефону
     const phoneNumber = document.getElementById('phone-number');
     const tooltip = document.getElementById('tooltip');
     phoneNumber.addEventListener('click', () => {
@@ -406,7 +410,6 @@
       });
     });
 
-    // Анімація картинки (з посиленим рухом)
     const heroImage = document.querySelector(".hero-image img");
     document.querySelector(".hero-image").addEventListener("mousemove", (e) => {
       const rect = e.currentTarget.getBoundingClientRect();
