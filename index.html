@@ -490,7 +490,7 @@
       const y = e.clientY - rect.top - rect.height / 2;
       const rotateX = (-y / (rect.height / 2)) * 60;
       const rotateY = (x / (rect.width / 2)) * 60;
-      heroImage.style.transform = rotateX(${rotateX}deg) rotateY(${rotateY}deg);
+      heroImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
     heroContainer.addEventListener('mouseleave', () => {
