@@ -375,11 +375,12 @@
       font-size: 2rem;
     }
 
-   .reviews {
+    .reviews {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* рівно 3 колонки */
-      gap: 20px;
-      margin-top: 30px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;                /* менша відстань між картками */
+      max-width: 1000px;        /* щоб колонки не розповзались на всю ширину */
+      margin: 30px auto 0 auto; /* по центру контейнера */
     }
 
 
