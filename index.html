@@ -377,9 +377,9 @@
 
     .reviews-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      margin-top: 20px;
+      justify-content: center; /* щоб блоки не розтягувались */
     }
     
     .review-card {
@@ -387,6 +387,8 @@
       border-radius: 10px;
       padding: 15px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 320px; /* ширина як у старих прямокутників */
+      margin: 0 auto; /* центрування кожного блока */
     }
     
     .review-card h3 {
@@ -399,7 +401,6 @@
       font-size: 0.95rem;
       line-height: 1.4;
     }
-
 
 
     @media (max-width: 768px) {
