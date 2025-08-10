@@ -382,13 +382,13 @@
       justify-content: center; /* щоб блоки не розтягувались */
     }
     
-    .review-card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      max-width: 320px; /* ширина як у старих прямокутників */
-      margin: 0 auto; /* центрування кожного блока */
+    .reviews .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 300px); /* 3 вузькі колонки по 300px */
+      gap: 20px;
+      justify-content: center; /* центрує групу колонок на широких екранах */
+      align-items: start;
+      margin-top: 20px;
     }
     
     .review-card h3 {
