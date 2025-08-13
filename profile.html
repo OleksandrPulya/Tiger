@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профіль користувача</title>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Russo One', sans-serif;
+      background-color: #0b0b0b;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .profile-container {
+      background-color: #141414;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255,0,0,0.6);
+      width: 350px;
+      text-align: center;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px 0;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .tab.active {
+      border-bottom: 3px solid #ff1e1e;
+      font-weight: bold;
+    }
+
+    form {
+      display: none;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form.active {
+      display: flex;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff1e1e;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #cc0000;
+    }
+
+    .switch-link {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #ff1e1e;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="tabs">
+      <div class="tab active" id="login-tab">Вхід</div>
+      <div class="tab" id="register-tab">Реєстрація</div>
+    </div>
+
+    <!-- Форма входу -->
+    <form id="login-form" class="active">
+      <input type="email" placeholder="Електронна пошта" required>
+      <input type="password" placeholder="Пароль" required>
+      <button type="submit">Увійти</button>
+      <div class="switch-link" id="to-register">Ще не маєте акаунта? Зареєструйтесь</div>
+    </form>
+
+    <!-- Форма реєстрації -->
+    <form id="register-form">
+      <input type="text" placeholder="Ім'я користувача" required>
+      <input type="email" placeholder="Електронна пошта" required>
+      <input type="password" placeholder="Пароль" required>
+      <input type="password" placeholder="Підтвердьте пароль" required>
+      <button type="submit">Зареєструватися</button>
+      <div class="switch-link" id="to-login">Вже маєте акаунт? Увійдіть</div>
+    </form>
+  </div>
+
+  <script>
+    const loginTab = document.getElementById('login-tab');
+    const registerTab = document.getElementById('register-tab');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const toRegister = document.getElementById('to-register');
+    const toLogin = document.getElementById('to-login');
+
+    loginTab.addEventListener('click', () => {
+      loginTab.classList.add('active');
+      registerTab.classList.remove('active');
+      loginForm.classList.add('active');
+      registerForm.classList.remove('active');
+    });
+
+    registerTab.addEventListener('click', () => {
+      registerTab.classList.add('active');
+      loginTab.classList.remove('active');
+      registerForm.classList.add('active');
+      loginForm.classList.remove('active');
+    });
+
+    toRegister.addEventListener('click', () => {
+      registerTab.click();
+    });
+
+    toLogin.addEventListener('click', () => {
+      loginTab.click();
+    });
+
+    // Простий приклад для відправки форм
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Успішний вхід (тут має бути реальна логіка)');
+    });
+
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Успішна реєстрація (тут має бути реальна логіка)');
+    });
+  </script>
+</body>
+</html>
