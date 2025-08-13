@@ -34,16 +34,16 @@
     .header-content {
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Розташовує елементи по краях */
+      justify-content: space-between;
       max-width: 1200px;
       width: 100%;
     }
 
     .logo img {
-      width: 40px;      /* розмір логотипу */
+      width: 40px;
       height: 40px;
-      border-radius: 50%; /* круглий */
-      cursor: pointer;     /* показує, що можна клікнути */
+      border-radius: 50%;
+      cursor: pointer;
     }
 
     .profile-button img {
@@ -51,6 +51,7 @@
       height: 40px;
       border-radius: 50%;
       cursor: pointer;
+      margin-left: auto; /* Додано для вирівнювання праворуч */
     }
 
     .profile-container {
@@ -66,10 +67,9 @@
       display: flex;
       align-items: center;
       gap: 20px;
-      flex-grow: 1; /* займає весь простір між логотипом і кнопкою профілю */
+      flex-grow: 1;
       justify-content: center;
     }
-
 
     .logo {
       height: 40px;
@@ -244,6 +244,7 @@
       object-fit: contain;
       transition: transform 0.3s ease;
       will-change: transform;
+      transform-style: preserve-3d;
     }
 
     .stats {
@@ -311,7 +312,6 @@
       text-align: center;
     }
 
-    /* НОВА РАМКА ДЛЯ ЗАГОЛОВКА */
     .services-header {
       background-color: #1c1c1c;
       border: 2px solid #444;
@@ -388,7 +388,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap; /* щоб на мобільних переносилося */
+      flex-wrap: wrap;
     }
     
     .rating {
@@ -411,17 +411,17 @@
     .reviews {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 15px;                /* менша відстань між картками */
-      max-width: 1000px;        /* щоб колонки не розповзались на всю ширину */
-      margin: 30px auto 0 auto; /* по центру контейнера */
+      gap: 15px;
+      max-width: 1000px;
+      margin: 30px auto 0 auto;
     }
 
     .reviews-section {
       background-color: #141414;
       padding: 40px 20px;
-      width: 100vw; /* або width: 100%; */
-      margin: 30px 0; /* прибрати авто, щоб не було центрування з обмеженням */
-      border-radius: 10px 0 0 10px; /* за бажанням, або 0, якщо треба, щоб фон був повністю */
+      width: 100vw;
+      margin: 30px 0;
+      border-radius: 10px 0 0 10px;
       border: 2px solid #2c2c2c;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       position: relative;
@@ -434,24 +434,22 @@
     .container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 0 20px; /* щоб був відступ з боків */
+      padding: 0 20px;
     }
 
     .services-header {
       display: flex;
       align-items: center;
-      justify-content: space-between; /* щоб заголовок і рейтинг розташувались по боках */
+      justify-content: space-between;
       flex-wrap: wrap;
     }
     
     .reviews-section .services-header {
       display: flex;
       align-items: center;
-      justify-content: space-between; /* спеціально для секції відгуків */
+      justify-content: space-between;
     }
 
-    /* -------- КІНЦЕВІ ПРАВИЛА-ПАТЧІ (нічого не видаляємо, лише перекриваємо) -------- */
-    /* Червоний колір заголовків у рамці services-header */
     .services-header h2,
     .reviews-section .services-header h2 {
       color: red;
@@ -459,16 +457,13 @@
       margin: 0;
     }
 
-    /* Відгуки: заголовок ліворуч, рейтинг праворуч — перекриваємо !important */
     .reviews-section .services-header {
       justify-content: space-between !important;
     }
 
-    /* Послуги: залишаємо заголовок по центру */
     .services .services-header {
       justify-content: center !important;
     }
-    /* -------- КІНЕЦЬ ПАТЧІВ -------- */
 
     @media (max-width: 768px) {
       nav {
@@ -495,7 +490,7 @@
       }
 
       .reviews {
-        grid-template-columns: 1fr; /* краща читабельність на мобільних */
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -597,20 +592,20 @@
       </div>
         <div class="reviews">
           <div class="card">
-            <h3>Етнографічний фестиваль “Маланка-фест”</h3>
+            <h3>Етнографічний фестиваль "Маланка-фест"</h3>
             <p>Висловлюємо подяку підрозділу швидкого реагування «Тигр» за професійне забезпечення безпеки під час Фестивалю Маланок, який відбувся у Чернівцях.<br>Завдяки вашій оперативності та високому рівню організації учасники та гості події могли насолоджуватися святом без жодних занепокоєнь.</p>
           </div>
           <div class="card">
-            <h3>“Bla bla bar”</h3>
-            <p>Відколи ми почали працювати з охоронною компанією «Тигр» наші заклади стали ще безпечнішими. Команда “Тигр” працює злагоджено та професійно. Високий рівень професіоналізму та здатність діяти швидко – це те, що ми шукали в охоронній компанії. Завдяки системі відеоспостереження 24/7 ми завжди знаємо, що все під контролем та всі в цілковитій безпеці.</p>
+            <h3>"Bla bla bar"</h3>
+            <p>Відколи ми почали працювати з охоронною компанією «Тигр» наші заклади стали ще безпечнішими. Команда "Тигр" працює злагоджено та професійно. Високий рівень професіоналізму та здатність діяти швидко – це те, що ми шукали в охоронній компанії. Завдяки системі відеоспостереження 24/7 ми завжди знаємо, що все під контролем та всі в цілковитій безпеці.</p>
           </div>
           <div class="card">
             <h3>Якобишен Даніель Заклади STREET</h3>
-            <p>Спеціалізована охоронна служба “ТИГР” вражає своєю професійністю та бездоганною виконавчою дисципліною. Хочу зауважити про їх високий стандарт безпеки та невтомну готовність до забезпечення безпеки. Завдяки бездоганній роботі “Тигру” ми маємо впевненість у надійності нашого захисту та можемо довіряти їм у найважливіші моменти.</p>
+            <p>Спеціалізована охоронна служба "ТИГР" вражає своєю професійністю та бездоганною виконавчою дисципліною. Хочу зауважити про їх високий стандарт безпеки та невтомну готовність до забезпечення безпеки. Завдяки бездоганній роботі "Тигру" ми маємо впевненість у надійності нашого захисту та можемо довіряти їм у найважливіші моменти.</p>
           </div>
           <div class="card">
             <h3>Пекарня-кондитерська Рецептура</h3>
-            <p>Задоволені співпрацею з компанією “ТИГР”.<br>Договір уклали швидко, у випадку потреби – реагують швидко та допомагають у вирішенні проблем!</p>
+            <p>Задоволені співпрацею з компанією "ТИГР".<br>Договір уклали швидко, у випадку потреби – реагують швидко та допомагають у вирішенні проблем!</p>
           </div>
           <div class="card">
             <h3>Автентичний простір краси Iv.Art</h3>
@@ -618,12 +613,11 @@
           </div>
           <div class="card">
             <h3>Мережа закладів піцерій ШО-ШО</h3>
-            <p>З охоронною компанією “ТИГР” ми співпрацюємо вже не один рік і з впевненістю можемо зазначити, .</p>
+            <p>З охоронною компанією "ТИГР" ми співпрацюємо вже не один рік і з впевненістю можемо зазначити, .</p>
           </div>
         </div>
       </div>
     </section>
-
 
   <script>
     function copyToClipboard(text, tooltip) {
@@ -653,10 +647,9 @@
       const rect = heroContainer.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      const rotateX = (-y / (rect.height / 2)) * 60;
-      const rotateY = (x / (rect.width / 2)) * 60;
-      /* ВИПРАВЛЕНО: використовуємо шаблонний літерал з бектиками */
-      heroImage.style.transform = rotateX(${rotateX}deg) rotateY(${rotateY}deg);
+      const rotateX = (-y / (rect.height / 2)) * 5;
+      const rotateY = (x / (rect.width / 2)) * 5;
+      heroImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
     heroContainer.addEventListener('mouseleave', () => {
