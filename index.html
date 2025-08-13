@@ -321,7 +321,6 @@
       transform: scale(1.03);
     }
 
-
     .card h3 {
       color: red;
     }
@@ -418,9 +417,25 @@
       justify-content: space-between; /* спеціально для секції відгуків */
     }
 
+    /* -------- КІНЦЕВІ ПРАВИЛА-ПАТЧІ (нічого не видаляємо, лише перекриваємо) -------- */
+    /* Червоний колір заголовків у рамці services-header */
+    .services-header h2,
+    .reviews-section .services-header h2 {
+      color: red;
+      font-weight: bold;
+      margin: 0;
+    }
 
+    /* Відгуки: заголовок ліворуч, рейтинг праворуч — перекриваємо !important */
+    .reviews-section .services-header {
+      justify-content: space-between !important;
+    }
 
-
+    /* Послуги: залишаємо заголовок по центру */
+    .services .services-header {
+      justify-content: center !important;
+    }
+    /* -------- КІНЕЦЬ ПАТЧІВ -------- */
 
     @media (max-width: 768px) {
       nav {
@@ -444,6 +459,10 @@
 
       .phone-diamond {
         display: none;
+      }
+
+      .reviews {
+        grid-template-columns: 1fr; /* краща читабельність на мобільних */
       }
     }
   </style>
@@ -589,7 +608,8 @@
       const y = e.clientY - rect.top - rect.height / 2;
       const rotateX = (-y / (rect.height / 2)) * 60;
       const rotateY = (x / (rect.width / 2)) * 60;
-      heroImage.style.transform = rotateX(${rotateX}deg) rotateY(${rotateY}deg);
+      /* ВИПРАВЛЕНО: використовуємо шаблонний літерал з бектиками */
+      heroImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
     heroContainer.addEventListener('mouseleave', () => {
