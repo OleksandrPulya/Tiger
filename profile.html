@@ -150,6 +150,7 @@
     const toRegister = document.getElementById('to-register');
     const toLogin = document.getElementById('to-login');
 
+    // Перемикання вкладок
     loginTab.addEventListener('click', () => {
       loginTab.classList.add('active');
       registerTab.classList.remove('active');
@@ -164,32 +165,17 @@
       loginForm.classList.remove('active');
     });
 
-    toRegister.addEventListener('click', () => {
-      registerTab.click();
-    });
+    toRegister.addEventListener('click', () => registerTab.click());
+    toLogin.addEventListener('click', () => loginTab.click());
 
-    toLogin.addEventListener('click', () => {
-      loginTab.click();
-    });
+    // Масив для збереження зареєстрованих користувачів
+    let users = JSON.parse(localStorage.getItem('users') || '[]');
 
-    // Вхід
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Успішний вхід');
-    });
-
-    // Реєстрація з перевіркою дозволених емейлів
-    const allowedEmails = ["test@example.com", "user@domain.com", "admin@site.com"];
-
+    // Реєстрація
     registerForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const emailInput = registerForm.querySelector('input[type="email"]').value.trim();
-
-      if (!allowedEmails.includes(emailInput)) {
-        alert("Цей емейл не зареєстрований у системі. Використайте існуючий емейл.");
-        return;
-      }
-
+      const username = registerForm.querySelector('input[type="text"]').value.trim();
+      const email = registerForm.querySelector('input[type="email"]').value.trim();
       const password = registerForm.querySelector('input[type="password"]').value;
       const confirmPassword = registerForm.querySelectorAll('input[type="password"]')[1].value;
 
@@ -198,7 +184,35 @@
         return;
       }
 
-      alert("Успішна реєстрація");
+      // Перевірка, чи користувач уже зареєстрований
+      if (users.some(user => user.email === email)) {
+        alert("Користувач з таким емейлом вже існує!");
+        return;
+      }
+
+      // Додаємо користувача
+      users.push({username, email, password});
+      localStorage.setItem('users', JSON.stringify(users));
+      alert("Успішна реєстрація!");
+      registerForm.reset();
+      loginTab.click();
+    });
+
+    // Вхід
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = loginForm.querySelector('input[type="email"]').value.trim();
+      const password = loginForm.querySelector('input[type="password"]').value;
+
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        alert("Невірний емейл або пароль!");
+        return;
+      }
+
+      alert(`Успішний вхід! Ласкаво просимо, ${user.username}!`);
+      loginForm.reset();
     });
   </script>
 </body>
