@@ -50,9 +50,16 @@
     input {
       padding: 10px;
       border-radius: 8px;
-      border: none;
+      border: 2px solid #ff1e1e;
       outline: none;
       font-size: 1rem;
+      background-color: #1a1a1a;
+      color: white;
+      box-shadow: 0 0 10px #ff1e1e;
+    }
+
+    input:focus {
+      box-shadow: 0 0 20px #ff1e1e, 0 0 40px #ff1e1e;
     }
 
     button {
@@ -78,27 +85,11 @@
       text-decoration: underline;
     }
 
-    input {
-      padding: 10px;
-      border-radius: 8px;
-      border: 2px solid #ff1e1e; /* червоне обведення */
-      outline: none;
-      font-size: 1rem;
-      background-color: #1a1a1a;
-      color: white;
-      box-shadow: 0 0 10px #ff1e1e; /* червоне світіння */
-    }
-    
-    /* Якщо хочеш сильніше світіння під час фокусу */
-    input:focus {
-      box-shadow: 0 0 20px #ff1e1e, 0 0 40px #ff1e1e;
-    }
-
     .profile-container {
       padding: 30px;
       border-radius: 15px;
       background-color: #1a1a1a;
-      box-shadow: 0 0 20px #ff1e1e, 0 0 40px #ff1e1e; /* червоне світіння */
+      box-shadow: 0 0 20px #ff1e1e, 0 0 40px #ff1e1e;
     }
 
     .back-button {
@@ -116,7 +107,7 @@
       transition: all 0.3s ease;
       z-index: 1000;
     }
-    
+
     .back-button:hover {
       background-color: #cc0000;
       box-shadow: 0 0 20px #ff1e1e, 0 0 40px #ff1e1e;
@@ -125,7 +116,7 @@
 </head>
 <body>
   <button class="back-button" onclick="history.back()">Назад</button>
-  
+
   <div class="profile-container">
     <div class="tabs">
       <div class="tab active" id="login-tab">Вхід</div>
@@ -181,15 +172,33 @@
       loginTab.click();
     });
 
-    // Простий приклад для відправки форм
+    // Вхід
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       alert('Успішний вхід');
     });
 
+    // Реєстрація з перевіркою дозволених емейлів
+    const allowedEmails = ["test@example.com", "user@domain.com", "admin@site.com"];
+
     registerForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('Успішна реєстрація');
+      const emailInput = registerForm.querySelector('input[type="email"]').value.trim();
+
+      if (!allowedEmails.includes(emailInput)) {
+        alert("Цей емейл не зареєстрований у системі. Використайте існуючий емейл.");
+        return;
+      }
+
+      const password = registerForm.querySelector('input[type="password"]').value;
+      const confirmPassword = registerForm.querySelectorAll('input[type="password"]')[1].value;
+
+      if (password !== confirmPassword) {
+        alert("Паролі не співпадають!");
+        return;
+      }
+
+      alert("Успішна реєстрація");
     });
   </script>
 </body>
